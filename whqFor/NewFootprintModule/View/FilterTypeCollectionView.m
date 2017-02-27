@@ -8,6 +8,8 @@
 
 #import "FilterTypeCollectionView.h"
 #import "FilterCustomCollectionCell.h"
+#import "ColorMatrix.h"
+#import "ImageUtil.h"
 
 static NSString *const customCellID = @"FilterCustomCollectionCell";
 
@@ -49,15 +51,93 @@ static NSString *const customCellID = @"FilterCustomCollectionCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return 10;
+    return 14;
     
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    FilterCustomCollectionCell *cell = [self.filterTypeCollectionView dequeueReusableCellWithReuseIdentifier:customCellID forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor yellowColor];
+    NSArray *arr = @[@"原图",@"LOMO",@"黑白",@"复古",@"哥特",@"锐化",@"淡雅",@"酒红",@"清宁",@"浪漫",@"光晕",@"蓝调",@"梦幻",@"夜色"];
     
+    FilterCustomCollectionCell *cell = [self.filterTypeCollectionView dequeueReusableCellWithReuseIdentifier:customCellID forIndexPath:indexPath];
+    cell.filterTypeLabel.text = arr[indexPath.row];
+    switch (indexPath.row)
+    {
+        case 0:
+        {
+            cell.filterTypeImageView.image = [UIImage imageNamed:@"test.png"];
+        }
+            break;
+        case 1:
+        {
+            cell.filterTypeImageView.image = [ImageUtil imageWithImage:[UIImage imageNamed:@"test.png"] withColorMatrix:colormatrix_lomo];
+        }
+            break;
+        case 2:
+        {
+            cell.filterTypeImageView.image = [ImageUtil imageWithImage:[UIImage imageNamed:@"test.png"]withColorMatrix:colormatrix_heibai];
+        }
+            break;
+        case 3:
+        {
+            cell.filterTypeImageView.image = [ImageUtil imageWithImage:[UIImage imageNamed:@"test.png"] withColorMatrix:colormatrix_huajiu];
+        }
+            break;
+        case 4:
+        {
+            cell.filterTypeImageView.image = [ImageUtil imageWithImage:[UIImage imageNamed:@"test.png"]withColorMatrix:colormatrix_gete];
+        }
+            break;
+        case 5:
+        {
+            cell.filterTypeImageView.image = [ImageUtil imageWithImage:[UIImage imageNamed:@"test.png"] withColorMatrix:colormatrix_ruise];
+        }
+            break;
+        case 6:
+        {
+            cell.filterTypeImageView.image = [ImageUtil imageWithImage:[UIImage imageNamed:@"test.png"] withColorMatrix:colormatrix_danya];
+        }
+            break;
+        case 7:
+        {
+            cell.filterTypeImageView.image = [ImageUtil imageWithImage:[UIImage imageNamed:@"test.png"]withColorMatrix:colormatrix_jiuhong];
+        }
+            break;
+        case 8:
+        {
+            cell.filterTypeImageView.image = [ImageUtil imageWithImage:[UIImage imageNamed:@"test.png"] withColorMatrix:colormatrix_qingning];
+        }
+            break;
+        case 9:
+        {
+            cell.filterTypeImageView.image = [ImageUtil imageWithImage:[UIImage imageNamed:@"test.png"] withColorMatrix:colormatrix_langman];
+        }
+            break;
+        case 10:
+        {
+            cell.filterTypeImageView.image = [ImageUtil imageWithImage:[UIImage imageNamed:@"test.png"]withColorMatrix:colormatrix_guangyun];
+        }
+            break;
+        case 11:
+        {
+            cell.filterTypeImageView.image = [ImageUtil imageWithImage:[UIImage imageNamed:@"test.png"]withColorMatrix:colormatrix_landiao];
+        }
+            break;
+        case 12:
+        {
+            cell.filterTypeImageView.image = [ImageUtil imageWithImage:[UIImage imageNamed:@"test.png"]withColorMatrix:colormatrix_menghuan];
+        }
+            break;
+        case 13:
+        {
+            cell.filterTypeImageView.image = [ImageUtil imageWithImage:[UIImage imageNamed:@"test.png"]withColorMatrix:colormatrix_yese];
+        }
+            break;
+            
+        default:
+            break;
+    }
+
     
     return cell;
 }

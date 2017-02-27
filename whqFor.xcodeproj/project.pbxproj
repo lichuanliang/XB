@@ -198,6 +198,8 @@
 		03BD9CF71E64A20400671B85 /* EditPhotosCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03BD9CF51E64A20400671B85 /* EditPhotosCustomCell.xib */; };
 		03BD9CFA1E64A44E00671B85 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BD9CF91E64A44E00671B85 /* AssetsLibrary.framework */; };
 		03BD9CFC1E64A7D200671B85 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BD9CFB1E64A7D200671B85 /* Photos.framework */; };
+		216B21331E64739F007D3BD3 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 216B21321E64739F007D3BD3 /* test.png */; };
+		216B21371E64749C007D3BD3 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 216B21361E64749C007D3BD3 /* ImageUtil.m */; };
 		219275571E627FD8004EF85F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 219275561E627FD8004EF85F /* main.m */; };
 		2192755A1E627FD8004EF85F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 219275591E627FD8004EF85F /* AppDelegate.m */; };
 		219275601E627FD8004EF85F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2192755E1E627FD8004EF85F /* Main.storyboard */; };
@@ -665,6 +667,10 @@
 		03BD9CF51E64A20400671B85 /* EditPhotosCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPhotosCustomCell.xib; sourceTree = "<group>"; };
 		03BD9CF91E64A44E00671B85 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		03BD9CFB1E64A7D200671B85 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		216B21321E64739F007D3BD3 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		216B21341E64749C007D3BD3 /* ColorMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMatrix.h; sourceTree = "<group>"; };
+		216B21351E64749C007D3BD3 /* ImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtil.h; sourceTree = "<group>"; };
+		216B21361E64749C007D3BD3 /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
 		219275521E627FD8004EF85F /* whqFor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whqFor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		219275561E627FD8004EF85F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		219275581E627FD8004EF85F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1282,6 +1288,7 @@
 		2192758B1E6290F9004EF85F /* image */ = {
 			isa = PBXGroup;
 			children = (
+				216B21321E64739F007D3BD3 /* test.png */,
 				2192758C1E6290F9004EF85F /* addPictures.png */,
 				2192758D1E6290F9004EF85F /* buttonSend@2x.png */,
 				2192758E1E6290F9004EF85F /* choose.png */,
@@ -1334,6 +1341,9 @@
 		219275AF1E6292B6004EF85F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				216B21341E64749C007D3BD3 /* ColorMatrix.h */,
+				216B21351E64749C007D3BD3 /* ImageUtil.h */,
+				216B21361E64749C007D3BD3 /* ImageUtil.m */,
 				0319D5F91E64F479004B25B2 /* filterlib */,
 				21F0F0741E62AD5700A4E71D /* WNImapgePicker */,
 				219275B11E6293D1004EF85F /* ImagePickerChooseView.h */,
@@ -1598,6 +1608,7 @@
 				033B93D61E65123700F50881 /* BeautyPhotoCustomCell.xib in Resources */,
 				2192759B1E6290FA004EF85F /* addPictures.png in Resources */,
 				219275A71E6290FA004EF85F /* 范冰冰.png in Resources */,
+				216B21331E64739F007D3BD3 /* test.png in Resources */,
 				033B93DE1E6525F500F50881 /* CutPhotoPIDCustomCell.xib in Resources */,
 				219275601E627FD8004EF85F /* Main.storyboard in Resources */,
 				219275A11E6290FA004EF85F /* picture2.png in Resources */,
@@ -1711,6 +1722,7 @@
 				21F0F0C81E62D3C600A4E71D /* TZImagePickerController.m in Sources */,
 				033B93281E64FCCA00F50881 /* GPUImageBoxBlurFilter.m in Sources */,
 				033B93891E64FCCA00F50881 /* GPUImageScreenBlendFilter.m in Sources */,
+				216B21371E64749C007D3BD3 /* ImageUtil.m in Sources */,
 				033B93871E64FCCA00F50881 /* GPUImageSaturationBlendFilter.m in Sources */,
 				033B933E1E64FCCA00F50881 /* GPUImageDifferenceBlendFilter.m in Sources */,
 				21F0F0C51E62D3C600A4E71D /* TZImageCropManager.m in Sources */,
