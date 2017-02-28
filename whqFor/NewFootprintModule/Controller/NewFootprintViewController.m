@@ -163,7 +163,9 @@
     
     // 1.打印图片名字
     [self printAssetsName:assets];
-    EditPhotosViewController *editPhotosVC = [[EditPhotosViewController alloc] init];
+    UIImage *image = [UIImage imageNamed:@"takePicture"];
+    
+    EditPhotosViewController *editPhotosVC = [[EditPhotosViewController alloc] initWithImage:image];
     editPhotosVC.assets = assets;
     [self.navigationController pushViewController:editPhotosVC animated:YES];
 }
