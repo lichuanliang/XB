@@ -326,6 +326,8 @@
     //确定--隐藏视图并保存图片
     self.customSliderView.doneBlock = ^(NSInteger beautyImageType){
         weakSelf.customSliderView.hidden = YES;
+        //美化图片后，要用美化的图片把old替换掉，因为要在美化后的图片上添加滤镜。
+        weakSelf.oldImageArr = weakSelf.imageArr;
         NSLog(@"点击确定按钮后的美化图片数据--%@", weakSelf.imageArr);
     };
 }
@@ -335,11 +337,13 @@
     
     __weak typeof(self) weakSelf = self;
     [filter forceProcessingAtSize:[weakSelf.imageArr[assetIndex] size]];
-    GPUImagePicture *pic = [[GPUImagePicture alloc] initWithImage:weakSelf.imageArr[assetIndex]];
+    //这个方法放在addTarget之前调用，避免filter的某些东西为加到pic里时调用imageFromCurrentFramebuffer返回为nil的crash
+    [filter useNextFrameForImageCapture];
+    GPUImagePicture *pic = [[GPUImagePicture alloc] initWithImage:weakSelf.oldImageArr[assetIndex]];
     [pic addTarget:filter];
     [pic processImage];
-    [filter useNextFrameForImageCapture];
    weakSelf.imageArr[assetIndex] = [filter imageFromCurrentFramebuffer];
+    [weakSelf.collectionView reloadData];
     NSLog(@"======美化完毕了图片");
     
 }
