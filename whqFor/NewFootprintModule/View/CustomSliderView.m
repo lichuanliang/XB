@@ -10,6 +10,17 @@
 
 @implementation CustomSliderView
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.sliderView.continuous = YES;
+    self.sliderView.thumbTintColor = [UIColor redColor];
+    self.sliderView.minimumTrackTintColor = [UIColor whiteColor];
+    self.sliderView.maximumTrackTintColor = [UIColor whiteColor];
+    self.sliderView.minimumValue = -1;
+    self.sliderView.maximumValue = 1;
+    
+}
+
 //滑条滑动
 - (IBAction)sliderAction:(id)sender {
     
