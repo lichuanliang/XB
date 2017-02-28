@@ -11,10 +11,13 @@
 #import <AssetsLibrary/ALAsset.h>
 #import <Photos/PHImageManager.h>
 #import "FilterTypeCollectionView.h"
-#import "UIImage+ImageScale.h"
+//#import "UIImage+ImageScale.h"
 #import "BeautyPhotoTypeCollection.h"
 #import "CutPIDCollectionView.h"
 #import "CustomSliderView.h"
+#import "ImageUtil.h"
+//#import "ColorMatrix.h"
+#import "testColor.h"
 
 #define kWidth 50
 #define kHeight 70
@@ -39,9 +42,6 @@
 @property (nonatomic, strong) UIButton *beautyPhotoBtn;
 /** 滤镜库collectionView*/
 @property (nonatomic, strong) FilterTypeCollectionView *filterTypeCollectionView;
-
-@property (nonatomic, strong) FWEffectBar *styleBar;
-@property (nonatomic, strong) FWEffectBar *filterStyleBar;
 @property BOOL isBlurActivate;
 @property BOOL isDarkCornerActivate;
 
@@ -52,6 +52,13 @@
 @property (nonatomic, strong) CutPIDCollectionView *cutPIDCollectionView;
 /** 滑条视图*/
 @property (nonatomic, strong) CustomSliderView *customSliderView;
+/** 当前图片的下标*/
+@property (nonatomic, assign) NSInteger assetIndex;
+/** PHAsset类型的图片转换为image类型的图片数组*/
+@property (nonatomic, strong) NSMutableArray *imageArr;
+@property (nonatomic, strong) UICollectionView *collectionView;
+/** 最开始的老图--切换效果时要先重置再设置*/
+@property (nonatomic, copy) NSMutableArray *oldImageArr;
 
 @end
 
@@ -69,6 +76,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.assetIndex = 0;
     self.filterLibraryBtn.selected = YES;
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor redColor];
@@ -83,7 +91,7 @@
     NSLog(@"=====将要编辑的图片数据为：%@", self.assets);
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 60, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 200) collectionViewLayout:flowLayout];
     collectionView.delegate = self;
     collectionView.dataSource = self;
@@ -91,86 +99,108 @@
     [collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([EditPhotosCustomCell class]) bundle:nil] forCellWithReuseIdentifier:@"EditPhotosCustomCell"];
     collectionView.pagingEnabled = YES;
     [self.view addSubview:collectionView];
+    self.collectionView = collectionView;
     flowLayout.minimumLineSpacing = 0;
     flowLayout.minimumInteritemSpacing = YES;
     
     [self setupBeautyPhotoBlock];
+    [self chooseFilterBlock];
     
-    
-    
-//    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:0];
-//    NSArray *titles = [NSArray arrayWithObjects:@"LOMO", @"美颜", @"格调", @"艺术", nil];
-//    for (int i = 0; i < [titles count]; i ++)
-//    {
-//        FWEffectBarItem *item = [[FWEffectBarItem alloc] initWithFrame:CGRectZero];
-//        item.title = [titles objectAtIndex:i];
-//        
-//        [items addObject:item];
-//    }
-//    
-//    UIButton * btnBlur = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [btnBlur setImage:[UIImage imageNamed:@"blur_deactivated"] forState:UIControlStateNormal];
-//    self.isBlurActivate = NO;
-//    btnBlur.frame = CGRectMake(10, [UIScreen mainScreen].bounds.size.height - 45 - [UIScreen mainScreen].bounds.size.height, 25, 25);
-//    //    [btnBlur addTarget:self action:@selector(btnBlurClicked:) forControlEvents:UIControlEventTouchUpInside];
-//    btnBlur.backgroundColor = [UIColor clearColor];
-//    [self.view addSubview:btnBlur];
-//    
-//    UIButton * btnDark = [UIButton buttonWithType:UIButtonTypeCustom];
-//    
-//    [btnDark setImage:[UIImage imageNamed:@"dark_corner_deactivated"] forState:UIControlStateNormal];
-//    self.isDarkCornerActivate = NO;
-//    btnDark.frame = CGRectMake(10, HEIGHT - 10 - kHeight, 25, 25);
-//    //    [btnDark addTarget:self action:@selector(btnDarkClicked:) forControlEvents:UIControlEventTouchUpInside];
-//    btnDark.backgroundColor = [UIColor clearColor];
-//    [self.view addSubview:btnDark];
-//    
-//    self.filterStyleBar = [[FWEffectBar alloc] initWithFrame:CGRectMake(15, HEIGHT - 20 - kHeight, WIDTH - 70, kHeight)];
-//    self.filterStyleBar.effectBarDelegate = self;
-//    self.filterStyleBar.itemBeginX = 15.0;
-//    self.filterStyleBar.itemWidth = 50.0;
-//    self.filterStyleBar.margin = 10.0;
-//    [self.view addSubview:self.filterStyleBar];
-//    [self setupLOMOFilter];
-    
+    for (int i = 0; i < self.assets.count; i++) {
+        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+        options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+        [[PHImageManager defaultManager] requestImageForAsset:(PHAsset *)[self.assets objectAtIndex:i] targetSize:[UIScreen mainScreen].bounds.size contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage *result, NSDictionary *info) {
+            //设置图片
+            [self.imageArr addObject:result];
+            [self.oldImageArr addObject:result];
+            
+        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [collectionView reloadData];
+        });
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
 }
 
-////简单边框视图
-//- (void)setupLOMOFilter
-//{
-//    [self setupFilterWithNormalImages:nil HighlightImages:nil titles:[NSArray arrayWithObjects:@"原图", @"LOMO", @"流年", @"HDR", @"碧波", @"上野", @"优格", @"彩虹瀑", @"云端", @"淡雅", @"粉红佳人", @"复古", @"候鸟", @"黑白", @"一九〇〇", @"古铜色", @"哥特风", @"移轴", @"TEST1", @"TEST2", @"TEST3", nil]];
-//}
-//
-//- (void)setupFilterWithNormalImages:(NSArray *)normalImages HighlightImages:(NSArray *)highlightImages titles:(NSArray *)titles
-//{
-//    FWEffectBarItem *item = nil;
-//    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:0];
-//    
-//    for (int i = 0; i < [titles count]; i++)
-//    {
-//        item = [[FWEffectBarItem alloc] initWithFrame:CGRectMake((kWidth + kSpace) * i + 10, 0, kWidth, kHeight)];
-//        item.titleOverlay = YES;
-//        item.backgroundColor = [UIColor blackColor];
-//        UIImage *img = [UIImage scaleImage:self.image targetHeight:70];
-//        
-//        [item setFinishedSelectedImage:img withFinishedUnselectedImage:img];
-//        item.title = [titles objectAtIndex:i];
-//        [items addObject:item];
-//    }
-//    
-//    self.filterStyleBar.items = items;
-//}
+
+//点击滤镜类型的block回调
+- (void)chooseFilterBlock {
+    
+    __weak typeof(self) weakSelf = self;
+    self.filterTypeCollectionView.chooseFilterBlock = ^(NSInteger row){
+        
+        if (weakSelf.assetIndex == 0) { //当前为第0张图片
+           
+            [weakSelf setupImageFilterRow:row withImageIndex:weakSelf.assetIndex];
+            [weakSelf.collectionView reloadData];
+           
+        }else if (weakSelf.assetIndex == 1) {//当前为第1张图片
+            [weakSelf setupImageFilterRow:row withImageIndex:weakSelf.assetIndex];
+            [weakSelf.collectionView reloadData];
+
+        }else if (weakSelf.assetIndex == 2) {//当前为第2张图片
+            [weakSelf setupImageFilterRow:row withImageIndex:weakSelf.assetIndex];
+            [weakSelf.collectionView reloadData];
+
+        }else if (weakSelf.assetIndex == 3) {//当前为第3张图片
+            [weakSelf setupImageFilterRow:row withImageIndex:weakSelf.assetIndex];
+            [weakSelf.collectionView reloadData];
+
+        }else if (weakSelf.assetIndex == 4) {//当前为第4张图片
+            [weakSelf setupImageFilterRow:row withImageIndex:weakSelf.assetIndex];
+            [weakSelf.collectionView reloadData];
+
+        }else if (weakSelf.assetIndex == 5) {//当前为第5张图片
+            [weakSelf setupImageFilterRow:row withImageIndex:weakSelf.assetIndex];
+            [weakSelf.collectionView reloadData];
+
+        }else if (weakSelf.assetIndex == 6) {//当前为第6张图片
+            [weakSelf setupImageFilterRow:row withImageIndex:weakSelf.assetIndex];
+            [weakSelf.collectionView reloadData];
+
+        }else if (weakSelf.assetIndex == 7) {//当前为第7张图片
+            [weakSelf setupImageFilterRow:row withImageIndex:weakSelf.assetIndex];
+            [weakSelf.collectionView reloadData];
+
+        }else if (weakSelf.assetIndex == 8) {//当前为第8张图片
+            [weakSelf setupImageFilterRow:row withImageIndex:weakSelf.assetIndex];
+            [weakSelf.collectionView reloadData];
+
+        }
+    };
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if ((scrollView.contentOffset.x) / WIDTH == 0) {
+        self.assetIndex = 0;
+    }else if ((scrollView.contentOffset.x) / WIDTH == 1) {
+        self.assetIndex = 1;
+    }else if ((scrollView.contentOffset.x) / WIDTH == 2) {
+        self.assetIndex = 2;
+    }else if ((scrollView.contentOffset.x) / WIDTH == 3) {
+        self.assetIndex = 3;
+    }else if ((scrollView.contentOffset.x) / WIDTH == 4) {
+        self.assetIndex = 4;
+    }else if ((scrollView.contentOffset.x) / WIDTH == 5) {
+        self.assetIndex = 5;
+    }else if ((scrollView.contentOffset.x) / WIDTH == 6) {
+        self.assetIndex = 6;
+    }else if ((scrollView.contentOffset.x) / WIDTH == 7) {
+        self.assetIndex = 7;
+    }else if ((scrollView.contentOffset.x) / WIDTH == 8) {
+        self.assetIndex = 8;
+    }
+}
 
 //设置美化图片的调节视图-（裁剪比例、亮度、对比度等）view
 - (void)setupBeautyPhotoBlock {
     
     __weak typeof(self) weakSelf = self;
     self.beautyPhotoTypeCollection.cutSetupViewBlock = ^(){
- 
+        
         //显示裁剪比例的view
         weakSelf.cutPIDCollectionView.hidden = NO;
         [weakSelf.view addSubview:weakSelf.cutPIDCollectionView];
@@ -190,24 +220,28 @@
     self.beautyPhotoTypeCollection.variabilityViewBlock = ^(){
         
         weakSelf.customSliderView.hidden = NO;
+        weakSelf.customSliderView.beautyImageType = BeautyImageTypeVariable;
         [weakSelf.view addSubview:weakSelf.customSliderView];
     };
     
     //对比度调节视图
     self.beautyPhotoTypeCollection.contrastViewBlock = ^(){
         weakSelf.customSliderView.hidden = NO;
+        weakSelf.customSliderView.beautyImageType = BeautyImageTypevContrast;
         [weakSelf.view addSubview:weakSelf.customSliderView];
     };
     
     //色温调节视图
     self.beautyPhotoTypeCollection.colorTemViewBlock = ^(){
         weakSelf.customSliderView.hidden = NO;
+        weakSelf.customSliderView.beautyImageType = BeautyImageTypeColourTmp;
         [weakSelf.view addSubview:weakSelf.customSliderView];
     };
     
     //饱和度调节视图
     self.beautyPhotoTypeCollection.saturableViewBlock = ^(){
         weakSelf.customSliderView.hidden = NO;
+        weakSelf.customSliderView.beautyImageType = BeautyImageTypeSaturability;
         [weakSelf.view addSubview:weakSelf.customSliderView];
     };
     //取消
@@ -229,7 +263,7 @@
 
 //继续按钮的触发事件
 - (void)continueBtnOnClick {
-    
+    NSLog(@"滤镜设置好后的图片数组为：%@", self.imageArr);
 }
 
 //滤镜库按钮点击
@@ -268,141 +302,82 @@
     }
 }
 
+//设置图片的滤镜效果
+- (void)setupImageFilterRow:(NSInteger)row withImageIndex:(NSInteger)assetIndex {
+    
+    __weak typeof(self)weakSelf = self;
+    switch (row) {
+        case 0:
+            weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+            break;
+        case 1:
+            weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+            weakSelf.imageArr[assetIndex] = [ImageUtil imageWithImage:weakSelf.imageArr[assetIndex] withColorMatrix:colorData_lomo];
+            break;
+        case 2:
+            weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+            weakSelf.imageArr[assetIndex] = [ImageUtil imageWithImage:weakSelf.imageArr[assetIndex] withColorMatrix:colorData_heibai];
+            break;
+        case 3:
+            weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+            weakSelf.imageArr[assetIndex] = [ImageUtil imageWithImage:weakSelf.imageArr[assetIndex] withColorMatrix:colorData_huajiu];
+            break;
+        case 4:
+            weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+            weakSelf.imageArr[assetIndex] = [ImageUtil imageWithImage:weakSelf.imageArr[assetIndex] withColorMatrix:colorData_gete];
+            break;
+        case 5:
+            weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+            weakSelf.imageArr[assetIndex] = [ImageUtil imageWithImage:weakSelf.imageArr[assetIndex] withColorMatrix:colorData_ruise];
+            break;
+        case 6:
+            weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+            weakSelf.imageArr[assetIndex] = [ImageUtil imageWithImage:weakSelf.imageArr[assetIndex] withColorMatrix:colorData_danya];
+            break;
+        case 7:
+            weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+            weakSelf.imageArr[assetIndex] = [ImageUtil imageWithImage:weakSelf.imageArr[assetIndex] withColorMatrix:colorData_jiuhong];
+            break;
+        case 8:
+            weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+            weakSelf.imageArr[assetIndex] = [ImageUtil imageWithImage:weakSelf.imageArr[assetIndex] withColorMatrix:colorData_qingning];
+            break;
+        case 9:
+            weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+            weakSelf.imageArr[assetIndex] = [ImageUtil imageWithImage:weakSelf.imageArr[assetIndex] withColorMatrix:colorData_langman];
+            break;
+        case 10:
+            weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+            weakSelf.imageArr[assetIndex] = [ImageUtil imageWithImage:weakSelf.imageArr[assetIndex] withColorMatrix:colorData_guangyun];
+            break;
+        case 11:
+            weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+            weakSelf.imageArr[assetIndex] = [ImageUtil imageWithImage:weakSelf.imageArr[assetIndex] withColorMatrix:colorData_landiao];
+            break;
+        case 12:
+            weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+            weakSelf.imageArr[assetIndex] = [ImageUtil imageWithImage:weakSelf.imageArr[assetIndex] withColorMatrix:colorData_menghuan];
+            break;
+        case 13:
+            weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+            weakSelf.imageArr[assetIndex] = [ImageUtil imageWithImage:weakSelf.imageArr[assetIndex] withColorMatrix:colorData_yese];
+            break;
+        default:
+            break;
+    }
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.assets.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    EditPhotosCustomCell *Cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"EditPhotosCustomCell" forIndexPath:indexPath];
-    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
-    [[PHImageManager defaultManager] requestImageForAsset:(PHAsset *)[self.assets objectAtIndex:indexPath.row] targetSize:[UIScreen mainScreen].bounds.size contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage *result, NSDictionary *info) {
-        //设置图片
-        Cell.editPhotoImageView.image = result;
-        
-    }];
     
+    EditPhotosCustomCell *Cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"EditPhotosCustomCell" forIndexPath:indexPath];
+    if (self.imageArr.count > 0) {
+        Cell.editPhotoImageView.image = self.imageArr[indexPath.row];
+    }
     return Cell;
-}
-
-#pragma mark - FWEffectBarDelegate
-- (void)effectBar:(FWEffectBar *)bar didSelectItemAtIndex:(NSInteger)index
-{
-//    if (bar == self.styleBar)
-//    {
-//        switch (index) {
-//            case 0:
-//                [self setupLOMOFilter];
-//                break;
-//                
-//            case 1:
-////                [self setupBeautyFilter];
-//                break;
-//                
-//            case 2:
-////                [self setupPatternFilter];
-//                break;
-//                
-//            case 3:
-////                [self setupArtistFilter];
-//                break;
-//        }
-//    }
-//    else
-//    {
-//        FWEffectBarItem *item = (FWEffectBarItem *)[bar.items objectAtIndex:index];
-//        item.ShowBorder = YES;
-//        [self.filterStyleBar scrollRectToVisible:item.frame  animated:YES];
-//        
-//        switch (index) {
-//            case 0:
-//                self.currentImage = self.image;
-//                break;
-//                
-//            case 1:
-//                self.currentImage = [FWApplyFilter applyLomofiFilter:self.image];
-//                break;
-//                
-//            case 2:
-//                self.currentImage = [FWApplyFilter applyLomo1Filter:self.image];
-//                break;
-//                
-//            case 3:
-//                self.currentImage =[FWApplyFilter applyMissetikateFilter:self.image];
-//                break;
-//                
-//            case 4:
-//                self.currentImage =[FWApplyFilter applyNashvilleFilter:self.image];
-//                break;
-//                
-//            case 5:
-//                self.currentImage =[FWApplyFilter applyLordKelvinFilter:self.image];
-//                break;
-//                
-//            case 6:
-//                self.currentImage = [FWApplyFilter applyAmatorkaFilter:self.image];
-//                break;
-//                
-//            case 7:
-//                self.currentImage = [FWApplyFilter applyRiseFilter:self.image];
-//                break;
-//                
-//            case 8:
-//                self.currentImage= [FWApplyFilter applyHudsonFilter:self.image];
-//                break;
-//                
-//            case 9:
-//                self.currentImage = [FWApplyFilter applyXproIIFilter:self.image];
-//                break;
-//                
-//            case 10:
-//                self.currentImage =[FWApplyFilter apply1977Filter:self.image];
-//                break;
-//                
-//            case 11:
-//                self.currentImage =[FWApplyFilter applyValenciaFilter:self.image];
-//                break;
-//                
-//            case 12:
-//                self.currentImage =[FWApplyFilter applyWaldenFilter:self.image];
-//                break;
-//                
-//            case 13:
-//                self.currentImage = [FWApplyFilter applyLocalBinaryPatternFilter:self.image];
-//                break;
-//                
-//            case 14:
-//                self.currentImage = [FWApplyFilter applyInkwellFilter:self.image];
-//                break;
-//                
-//            case 15:
-//                self.currentImage= [FWApplyFilter applySierraFilter:self.image];
-//                break;
-//                
-//            case 16:
-//                self.currentImage = [FWApplyFilter applyEarlybirdFilter:self.image];
-//                break;
-//                
-//            case 17:
-//                self.currentImage =[FWApplyFilter applySutroFilter:self.image];
-//                break;
-//                
-//            case 18:
-//                self.currentImage =[FWApplyFilter applyToasterFilter:self.image];
-//                self.imageView.image = self.currentImage;
-//                break;
-//                
-//            case 19:
-//                self.currentImage =[FWApplyFilter applyBrannanFilter:self.image];
-//                break;
-//                
-//            case 20:
-//                self.currentImage = [FWApplyFilter applyHefeFilter:self.image];
-//                break;
-//        }
-//        
-//        self.imageView.image = self.currentImage;
-//    }
 }
 
 
@@ -509,6 +484,20 @@
         _customSliderView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 150, [UIScreen mainScreen].bounds.size.width, 150);        _customSliderView.backgroundColor = [UIColor whiteColor];
     }
     return _customSliderView;
+}
+
+- (NSMutableArray *)imageArr {
+    if (!_imageArr) {
+        _imageArr = [NSMutableArray array];
+    }
+    return _imageArr;
+}
+
+- (NSMutableArray *)oldImageArr {
+    if (!_oldImageArr) {
+        _oldImageArr = [NSMutableArray array];
+    }
+    return _oldImageArr;
 }
 
 - (void)didReceiveMemoryWarning {

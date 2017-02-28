@@ -15,8 +15,6 @@ static NSString *const customCellID = @"FilterCustomCollectionCell";
 
 @interface FilterTypeCollectionView()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-
-
 @end
 
 @implementation FilterTypeCollectionView
@@ -143,8 +141,9 @@ static NSString *const customCellID = @"FilterCustomCollectionCell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-
-    
+    if (self.chooseFilterBlock) {
+        self.chooseFilterBlock(indexPath.row);
+    }
 }
 
 //设置cell与边缘的间隔

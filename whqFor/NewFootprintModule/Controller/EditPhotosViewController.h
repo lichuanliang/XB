@@ -7,9 +7,9 @@
 //
 /** ----编辑图片界面--- */
 #import <UIKit/UIKit.h>
-#import "FWEffectBar.h"
+//#import "FWEffectBar.h"
 
-@interface EditPhotosViewController : UIViewController<FWEffectBarDelegate>
+@interface EditPhotosViewController : UIViewController
 
 /** 顶部view*/
 @property (nonatomic, strong) UIView *topView;

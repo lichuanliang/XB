@@ -20,5 +20,7 @@
 @property (nonatomic, copy) void(^cancelBlock)();
 /** 确认事件的block*/
 @property (nonatomic, copy) void(^doneBlock)();
+/** 滑条的类型*/
+@property (nonatomic, assign) BeautyImageType beautyImageType;
 
 @end

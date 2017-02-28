@@ -1,10 +1,10 @@
-//
+
 //  RootViewController.h
 //  pictureProcess
 //
 //  Created by Ibokan on 12-9-7.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
-//
+
 
 // 1、LOMO
 const float colormatrix_lomo[] = {

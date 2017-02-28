@@ -10,6 +10,9 @@
 
 @interface FilterTypeCollectionView : UICollectionView
 
+/** 滤镜type的collection*/
 @property (nonatomic, strong) UICollectionView *filterTypeCollectionView;
+/** 选取滤镜方式的type*/
+@property (nonatomic, copy) void(^chooseFilterBlock)(NSInteger );
 
 @end

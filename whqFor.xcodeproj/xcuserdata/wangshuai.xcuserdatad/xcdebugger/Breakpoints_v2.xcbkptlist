@@ -16,16 +16,79 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "whqFor/NewFootprintModule/Controller/EditPhotosViewController.m"
-            timestampString = "509949534.896538"
+            timestampString = "510013234.160683"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "-setupBeautyPhotoBlock"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "-chooseFilterBlock"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__45-[EditPhotosViewController chooseFilterBlock]_block_invoke"
+                  moduleName = "whqFor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wangshuai/Desktop/test/-/whqFor/NewFootprintModule/Controller/EditPhotosViewController.m"
+                  timestampString = "510012299.888353"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "260"
+                  endingLineNumber = "260"
+                  offsetFromSymbolStart = "9468">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_.117"
+                  moduleName = "whqFor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wangshuai/Desktop/test/-/whqFor/NewFootprintModule/Controller/EditPhotosViewController.m"
+                  timestampString = "510012299.889753"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "260"
+                  endingLineNumber = "260"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.118"
+                  moduleName = "whqFor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wangshuai/Desktop/test/-/whqFor/NewFootprintModule/Controller/EditPhotosViewController.m"
+                  timestampString = "510012299.891068"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "260"
+                  endingLineNumber = "260"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "whqFor/NewFootprintModule/Controller/EditPhotosViewController.m"
+            timestampString = "510013234.160683"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "-chooseFilterBlock"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
