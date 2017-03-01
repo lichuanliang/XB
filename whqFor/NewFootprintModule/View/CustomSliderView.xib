@@ -19,7 +19,7 @@
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="B1M-5e-ns7">
                     <rect key="frame" x="38" y="50" width="244" height="31"/>
                     <connections>
-                        <action selector="sliderAction:" destination="iN0-l3-epB" eventType="valueChanged" id="BCC-ks-lVL"/>
+                        <action selector="sliderAction:" destination="iN0-l3-epB" eventType="valueChanged" id="GoA-uv-r0L"/>
                     </connections>
                 </slider>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9vZ-f9-Dg2">

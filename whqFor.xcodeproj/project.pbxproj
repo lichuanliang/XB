@@ -94,6 +94,7 @@
 		21F0F0FA1E63000200A4E71D /* AGPreviewScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F0F0EB1E63000200A4E71D /* AGPreviewScrollView.m */; };
 		21F0F0FB1E63000200A4E71D /* ALAsset+AGIPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F0F0ED1E63000200A4E71D /* ALAsset+AGIPC.m */; };
 		21F0F0FC1E63000200A4E71D /* UIButton+AGIPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F0F0EF1E63000200A4E71D /* UIButton+AGIPC.m */; };
+		EF057B0D9E4FDD03FC45FB69 /* libPods-whqFor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 330E346F1AE6BC5466589AD6 /* libPods-whqFor.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -262,6 +263,9 @@
 		21F0F0ED1E63000200A4E71D /* ALAsset+AGIPC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAsset+AGIPC.m"; sourceTree = "<group>"; };
 		21F0F0EE1E63000200A4E71D /* UIButton+AGIPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+AGIPC.h"; sourceTree = "<group>"; };
 		21F0F0EF1E63000200A4E71D /* UIButton+AGIPC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+AGIPC.m"; sourceTree = "<group>"; };
+		330E346F1AE6BC5466589AD6 /* libPods-whqFor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-whqFor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6E66F29C0740556BAC1CB57 /* Pods-whqFor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-whqFor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-whqFor/Pods-whqFor.debug.xcconfig"; sourceTree = "<group>"; };
+		AEE4D58F134B94D88ED4F9EF /* Pods-whqFor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-whqFor.release.xcconfig"; path = "Pods/Target Support Files/Pods-whqFor/Pods-whqFor.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +275,7 @@
 			files = (
 				03BD9CFC1E64A7D200671B85 /* Photos.framework in Frameworks */,
 				03BD9CFA1E64A44E00671B85 /* AssetsLibrary.framework in Frameworks */,
+				EF057B0D9E4FDD03FC45FB69 /* libPods-whqFor.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +301,7 @@
 			children = (
 				03BD9CFB1E64A7D200671B85 /* Photos.framework */,
 				03BD9CF91E64A44E00671B85 /* AssetsLibrary.framework */,
+				330E346F1AE6BC5466589AD6 /* libPods-whqFor.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -308,6 +314,7 @@
 				219275791E627FD8004EF85F /* whqForUITests */,
 				219275531E627FD8004EF85F /* Products */,
 				03BD9CF81E64A44E00671B85 /* Frameworks */,
+				9E9C80650595C54267FC2BD8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -557,6 +564,15 @@
 			path = AGImagePickerController;
 			sourceTree = "<group>";
 		};
+		9E9C80650595C54267FC2BD8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A6E66F29C0740556BAC1CB57 /* Pods-whqFor.debug.xcconfig */,
+				AEE4D58F134B94D88ED4F9EF /* Pods-whqFor.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -564,9 +580,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2192757F1E627FD8004EF85F /* Build configuration list for PBXNativeTarget "whqFor" */;
 			buildPhases = (
+				C9C9EC2D6278FAEAF4EFC068 /* [CP] Check Pods Manifest.lock */,
 				2192754E1E627FD8004EF85F /* Sources */,
 				2192754F1E627FD8004EF85F /* Frameworks */,
 				219275501E627FD8004EF85F /* Resources */,
+				69A00773AD8F455A8CCB69EA /* [CP] Embed Pods Frameworks */,
+				A1DF1330736C9AA3F4221149 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -713,6 +732,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		69A00773AD8F455A8CCB69EA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-whqFor/Pods-whqFor-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1DF1330736C9AA3F4221149 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-whqFor/Pods-whqFor-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C9C9EC2D6278FAEAF4EFC068 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2192754E1E627FD8004EF85F /* Sources */ = {
@@ -917,6 +984,7 @@
 		};
 		219275801E627FD8004EF85F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6E66F29C0740556BAC1CB57 /* Pods-whqFor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = AEUF6D7A3N;
@@ -932,6 +1000,7 @@
 		};
 		219275811E627FD8004EF85F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEE4D58F134B94D88ED4F9EF /* Pods-whqFor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = AEUF6D7A3N;

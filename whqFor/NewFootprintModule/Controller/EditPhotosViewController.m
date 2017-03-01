@@ -16,7 +16,6 @@
 #import "CutPIDCollectionView.h"
 #import "CustomSliderView.h"
 #import "ImageUtil.h"
-//#import "ColorMatrix.h"
 #import "testColor.h"
 
 #define kWidth 50
@@ -173,6 +172,41 @@
     };
 }
 
+//取消
+- (void)cancelBeautyImageIndex:(NSInteger)assetIndex {
+    
+    __weak typeof(self) weakSelf = self;
+    if (weakSelf.assetIndex == assetIndex) { //图片下标0
+        weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+        [weakSelf.collectionView reloadData];
+    }else if (weakSelf.assetIndex == assetIndex){//图片下标1
+        weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+        [weakSelf.collectionView reloadData];
+    }else if (weakSelf.assetIndex == assetIndex){//图片下标2
+        weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+        [weakSelf.collectionView reloadData];
+    }else if (weakSelf.assetIndex == assetIndex){//图片下标3
+        weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+        [weakSelf.collectionView reloadData];
+    }else if (weakSelf.assetIndex == assetIndex){//图片下标4
+        weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+        [weakSelf.collectionView reloadData];
+    }else if (weakSelf.assetIndex == assetIndex){//图片下标5
+        weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+        [weakSelf.collectionView reloadData];
+    }else if (weakSelf.assetIndex == assetIndex){//图片下标6
+        weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+        [weakSelf.collectionView reloadData];
+    }else if (weakSelf.assetIndex == assetIndex){//图片下标7
+        weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+        [weakSelf.collectionView reloadData];
+    }else if (weakSelf.assetIndex == assetIndex){//图片下标8
+        weakSelf.imageArr[assetIndex] = weakSelf.oldImageArr[assetIndex];
+        [weakSelf.collectionView reloadData];
+    }
+
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if ((scrollView.contentOffset.x) / WIDTH == 0) {
         self.assetIndex = 0;
@@ -222,6 +256,13 @@
         weakSelf.customSliderView.hidden = NO;
         weakSelf.customSliderView.beautyImageType = BeautyImageTypeVariable;
         [weakSelf.view addSubview:weakSelf.customSliderView];
+        
+        weakSelf.customSliderView.lightChangeBlock = ^(UISlider *slider){
+            NSLog(@"亮度调节值为：%f", slider.value);
+            GPUImageBrightnessFilter *filter = [[GPUImageBrightnessFilter alloc] init];
+            filter.brightness = slider.value;
+            [weakSelf setupBeautyImageViewWithFilter:filter withAssetIndex:weakSelf.assetIndex];
+        };
     };
     
     //对比度调节视图
@@ -229,13 +270,21 @@
         weakSelf.customSliderView.hidden = NO;
         weakSelf.customSliderView.beautyImageType = BeautyImageTypevContrast;
         [weakSelf.view addSubview:weakSelf.customSliderView];
+       
+        weakSelf.customSliderView.contrastChangeBlock = ^(UISlider *slider){
+            GPUImageContrastFilter *filter = [[GPUImageContrastFilter alloc] init];
+            filter.contrast = slider.value;
+            [weakSelf setupBeautyImageViewWithFilter:filter withAssetIndex:weakSelf.assetIndex];
+        };
     };
     
-    //色温调节视图
+    //色温调节视图 --暂时没写---
     self.beautyPhotoTypeCollection.colorTemViewBlock = ^(){
         weakSelf.customSliderView.hidden = NO;
         weakSelf.customSliderView.beautyImageType = BeautyImageTypeColourTmp;
         [weakSelf.view addSubview:weakSelf.customSliderView];
+        
+
     };
     
     //饱和度调节视图
@@ -243,18 +292,57 @@
         weakSelf.customSliderView.hidden = NO;
         weakSelf.customSliderView.beautyImageType = BeautyImageTypeSaturability;
         [weakSelf.view addSubview:weakSelf.customSliderView];
+        
+        weakSelf.customSliderView.saturibleChangeBlock = ^(UISlider *slider){
+            GPUImageContrastFilter *filter = [[GPUImageContrastFilter alloc] init];
+            filter.contrast = slider.value;
+            [weakSelf setupBeautyImageViewWithFilter:filter withAssetIndex:weakSelf.assetIndex];
+        };
     };
+    
     //取消
-    self.customSliderView.cancelBlock = ^(){
+    self.customSliderView.cancelBlock = ^(NSInteger beautyImageType){
         weakSelf.customSliderView.hidden = YES;
+        
+        switch (beautyImageType) {
+            case BeautyImageTypeVariable:
+                [weakSelf cancelBeautyImageIndex:weakSelf.assetIndex];
+                break;
+            case BeautyImageTypevContrast:
+                [weakSelf cancelBeautyImageIndex:weakSelf.assetIndex];
+                break;
+            case BeautyImageTypeColourTmp:
+                [weakSelf cancelBeautyImageIndex:weakSelf.assetIndex];
+                break;
+            case BeautyImageTypeSaturability:
+                [weakSelf cancelBeautyImageIndex:weakSelf.assetIndex];
+                break;
+                
+            default:
+                break;
+        }
     };
     
     //确定--隐藏视图并保存图片
-    self.customSliderView.doneBlock = ^(){
+    self.customSliderView.doneBlock = ^(NSInteger beautyImageType){
         weakSelf.customSliderView.hidden = YES;
+        NSLog(@"点击确定按钮后的美化图片数据--%@", weakSelf.imageArr);
     };
 }
 
+//设置亮度变化效果
+- (void)setupBeautyImageViewWithFilter:(GPUImageFilter *)filter withAssetIndex:(NSInteger)assetIndex{
+    
+    __weak typeof(self) weakSelf = self;
+    [filter forceProcessingAtSize:[weakSelf.imageArr[assetIndex] size]];
+    GPUImagePicture *pic = [[GPUImagePicture alloc] initWithImage:weakSelf.imageArr[assetIndex]];
+    [pic addTarget:filter];
+    [pic processImage];
+    [filter useNextFrameForImageCapture];
+   weakSelf.imageArr[assetIndex] = [filter imageFromCurrentFramebuffer];
+    NSLog(@"======美化完毕了图片");
+    
+}
 
 //返回按钮的触发事件
 - (void)backBtnOnClick {
@@ -263,7 +351,7 @@
 
 //继续按钮的触发事件
 - (void)continueBtnOnClick {
-    NSLog(@"滤镜设置好后的图片数组为：%@", self.imageArr);
+    NSLog(@"设置好后的图片数组为：%@", self.imageArr);
 }
 
 //滤镜库按钮点击

@@ -10,6 +10,7 @@
 
 @implementation CustomSliderView
 
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.sliderView.continuous = YES;
@@ -22,30 +23,40 @@
 }
 
 //滑条滑动
-- (IBAction)sliderAction:(id)sender {
-    
+- (IBAction)sliderAction:(UISlider *)sender {
     if (self.beautyImageType == BeautyImageTypeVariable) {//亮度
         NSLog(@"亮度调节");
+        if (self.lightChangeBlock) {
+            self.lightChangeBlock(sender);
+        }
         
     }else if (self.beautyImageType == BeautyImageTypevContrast) { //对比度
-         NSLog(@"对比度调节");
+        NSLog(@"对比度调节");
+        if (self.contrastChangeBlock) {
+            self.contrastChangeBlock(sender);
+        }
     }else if (self.beautyImageType == BeautyImageTypeColourTmp) { //色温
-         NSLog(@"色温调节");
+        NSLog(@"色温调节");
+        if (self.colourTmpChangeBlock) {
+            self.colourTmpChangeBlock(sender);
+        }
     }else if (self.beautyImageType == BeautyImageTypeSaturability){ //饱和度
-         NSLog(@"饱和度调节");
+        NSLog(@"饱和度调节");
+        if (self.saturibleChangeBlock) {
+            self.saturibleChangeBlock(sender);
+        }
     }
 }
-
 //取消
 - (IBAction)cancelBtnOnClick:(id)sender {
     if (self.cancelBlock) {
-        self.cancelBlock();
+        self.cancelBlock(self.beautyImageType);
     }
 }
 //确定
 - (IBAction)doneBtnOnClick:(id)sender {
     if (self.doneBlock) {
-        self.doneBlock();
+        self.doneBlock(self.beautyImageType);
     }
 }
 

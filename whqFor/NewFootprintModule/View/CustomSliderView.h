@@ -17,10 +17,18 @@
 /** 确定按钮*/
 @property (weak, nonatomic) IBOutlet UIButton *donBtn;
 /** 取消事件的block*/
-@property (nonatomic, copy) void(^cancelBlock)();
+@property (nonatomic, copy) void(^cancelBlock)(NSInteger);
 /** 确认事件的block*/
-@property (nonatomic, copy) void(^doneBlock)();
+@property (nonatomic, copy) void(^doneBlock)(NSInteger);
 /** 滑条的类型*/
 @property (nonatomic, assign) BeautyImageType beautyImageType;
+/** 亮度改变的block*/
+@property (nonatomic, copy) void(^lightChangeBlock)(UISlider *);
+/** 对比度block*/
+@property (nonatomic, copy) void(^contrastChangeBlock)(UISlider *);
+/** 色温block*/
+@property (nonatomic, copy) void(^colourTmpChangeBlock)(UISlider *);
+/** 饱和度block*/
+@property (nonatomic, copy) void(^saturibleChangeBlock)(UISlider *);
 
 @end

@@ -10,6 +10,6 @@
 #define WhqFor_pch
 
 #import "WhqForConst.h"
-
+#import <GPUImage/GPUImage.h>
 
 #endif /* WhqFor_pch */
