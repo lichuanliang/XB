@@ -19,13 +19,17 @@
 
 #import "NewFootprintViewController.h"
 #import "ImagePickerChooseView.h"
-#import "AGImagePickerController.h"
+//#import "AGImagePickerController.h"
 #import "WNImagePicker.h"
 #import "PhotosViewController.h"
 #import "TZImagePickerController.h"
 #import "EditPhotosViewController.h"
+#import "OEPopVideoController.h"
+#import <AssetsLibrary/ALAssetsLibrary.h>
+#import "MBProgressHUD+MJ.h"
 
-@interface NewFootprintViewController ()<UITextViewDelegate,UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, WNImagePickerDelegate, TZImagePickerControllerDelegate>
+
+@interface NewFootprintViewController ()<UITextViewDelegate,UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, WNImagePickerDelegate, TZImagePickerControllerDelegate, OEPopVideoControllerDelegate>
 {
     NSMutableArray *_selectedPhotos;
     NSMutableArray *_selectedAssets;
@@ -197,71 +201,25 @@
 
 -(void)initImagePickerChooseView {
     ImagePickerChooseView *IPCView = [[ImagePickerChooseView alloc]initWithFrame:CGRectMake(0, screenHeight - 64, screenWidth, IPCViewHeight) andAboveView:self.view];
-    //IPCView.frame = CGRectMake(0, screenHeight - IPCViewHeight - 64, screenWidth, IPCViewHeight);
+    [self.view addSubview:IPCView];
+    self.IPCView = IPCView;
+    //去拍小视频
+    IPCView.smallVideoBlock = ^(){
+        OEPopVideoController *videoController = [[OEPopVideoController alloc] init];
+        videoController.videoMaxTime = 4;
+        videoController.delegate = self;
+        [videoController presentPopupControllerAnimated:YES];
+        
+    };
     [IPCView setImagePickerBlock:^{
     //去选照片
     [self pushImagePickerController];
         
-        /**
-        PhotosViewController *photosVC = [[PhotosViewController alloc] init];
-        photosVC.modalPresentationStyle = UIModalPresentationCurrentContext;
-        photosVC.view.backgroundColor = [UIColor redColor];
-        photosVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:photosVC];
-        [self.navigationController presentViewController:nav animated:YES completion:nil];
-     **/
-        
-       // WNImagePicker *pickerVC  = [[WNImagePicker alloc]init];
-        //pickerVC.delegate = self;
-        //UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:pickerVC];
-        //[self presentViewController:navVC animated:YES completion:nil];
-        
-        
-        
-        
-        
-        
-    /**
-        self.imagePicker = [[AGImagePickerController alloc] initWithFailureBlock:^(NSError *error) {
-            
-            if (error == nil)
-            {
-                [self dismissViewControllerAnimated:YES completion:^{}];
-                [self.IPCView disappear];
-            } else
-            {
-                NSLog(@"Error: %@", error);
-                
-                // Wait for the view controller to show first and hide it after that
-                double delayInSeconds = 0.5;
-                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                    [self dismissViewControllerAnimated:YES completion:^{}];
-                });
-            }
-            
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-            
-        } andSuccessBlock:^(NSArray *info) {
-            [self.imagePickerArray addObjectsFromArray:info];
-            [self dismissViewControllerAnimated:YES completion:^{}];
-            [self.IPCView disappear];
-            [self initHeaderView];
-            
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-        }];
-        
-        self.imagePicker.maximumNumberOfPhotosToBeSelected = 9 - [self.imagePickerArray count];
-        
-        [self presentViewController:self.imagePicker animated:YES completion:^{}];
-    **/
     }];
     [UIView animateWithDuration:0.25f animations:^{
-        IPCView.frame = CGRectMake(0, screenHeight - IPCViewHeight-64, screenWidth, IPCViewHeight);
+        IPCView.frame = CGRectMake(0, screenHeight - IPCViewHeight, screenWidth, IPCViewHeight);
     } completion:^(BOOL finished) {
     }];
-    [self.view addSubview:IPCView];
-    self.IPCView = IPCView;
     
     [self.IPCView addImagePickerChooseView];
 }
@@ -327,6 +285,40 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.01;
+}
+
+#pragma mark - OEPopVideoControllerDelegate
+-(void)popVideoControllerDidSave:(NSString *)url{
+    [self savePhoneLibrary:url];
+}
+
+-(void)popVideoControllerWillOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer {
+    
+}
+
+-(void)savePhoneLibrary:(NSString *)url{
+    
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    NSURL *movieURL = [NSURL fileURLWithPath:url];
+    
+    if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(url))
+    {
+        [library writeVideoAtPathToSavedPhotosAlbum:movieURL completionBlock:^(NSURL *assetURL, NSError *error)
+         {
+             
+             //             UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleAlert];
+             if (error) {
+                 
+                 [MBProgressHUD showError:@"error"];
+                 //                      [alert addAction:[UIAlertAction actionWithTitle:@"error" style:UIAlertActionStyleDefault handler:nil]];
+             } else {
+                 //                     [alert addAction:[UIAlertAction actionWithTitle:@"success" style:UIAlertActionStyleDefault handler:nil]];
+                 [MBProgressHUD showSuccess:@"success"];
+             }
+             //              [self presentViewController:alert animated:YES completion:nil];
+         }];
+    }
+    
 }
 
 

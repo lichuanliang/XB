@@ -7,3 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
+
+/** 视频拍摄时长*/
+CGFloat const smallVideoTime = 10;

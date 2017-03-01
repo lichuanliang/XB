@@ -83,11 +83,11 @@
 {
     ImagePickerChooseCell *cell = [ImagePickerChooseCell cellWithTableView:tableView];
     if (indexPath.row == 0) {
-        cell.imagePickerName.text =@"拍照";
+        cell.imagePickerName.text =@"小视频";
     }
     else if (indexPath.row == 1)
     {
-        cell.imagePickerName.text =@"从手机相册选择";
+        cell.imagePickerName.text =@"照片";
     }
     else
     {
@@ -104,7 +104,9 @@
 {
     //拍照
     if (indexPath.row == 0) {
-        
+        if (self.smallVideoBlock) {
+            self.smallVideoBlock();
+        }
     }
     //从手机相册选择
     else if (indexPath.row == 1)

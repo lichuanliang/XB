@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+/** 视频拍摄时长*/
+extern CGFloat const smallVideoTime;
+
+
+
 //美化照片的类型
 typedef NS_ENUM(NSInteger,BeautyImageType) {
     BeautyImageTypeVariable = 0,    // 亮度

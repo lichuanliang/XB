@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		031087191E677FCE00F4A0B1 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 031086D51E677FCE00F4A0B1 /* MBProgressHUD+MJ.m */; };
+		0310871A1E677FCE00F4A0B1 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 031086D61E677FCE00F4A0B1 /* MBProgressHUD.bundle */; };
+		0310871B1E677FCE00F4A0B1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 031086D81E677FCE00F4A0B1 /* MBProgressHUD.m */; };
+		031087491E67805900F4A0B1 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 0310873F1E67805900F4A0B1 /* cancel.png */; };
+		0310874A1E67805900F4A0B1 /* convert.png in Resources */ = {isa = PBXBuildFile; fileRef = 031087401E67805900F4A0B1 /* convert.png */; };
+		0310874B1E67805900F4A0B1 /* OEPopVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031087421E67805900F4A0B1 /* OEPopVideoController.m */; };
+		0310874C1E67805900F4A0B1 /* OEProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031087441E67805900F4A0B1 /* OEProgressView.m */; };
+		0310874D1E67805900F4A0B1 /* OETabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 031087461E67805900F4A0B1 /* OETabbar.m */; };
+		0310874E1E67805900F4A0B1 /* RecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 031087481E67805900F4A0B1 /* RecordButton.m */; };
 		0319D5A71E64B4B3004B25B2 /* FilterCustomCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0319D5A51E64B4B3004B25B2 /* FilterCustomCollectionCell.m */; };
 		0319D5A81E64B4B3004B25B2 /* FilterCustomCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0319D5A61E64B4B3004B25B2 /* FilterCustomCollectionCell.xib */; };
 		0319D5AB1E64B715004B25B2 /* FilterTypeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0319D5AA1E64B715004B25B2 /* FilterTypeCollectionView.m */; };
@@ -115,6 +124,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		031086D41E677FCE00F4A0B1 /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
+		031086D51E677FCE00F4A0B1 /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
+		031086D61E677FCE00F4A0B1 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		031086D71E677FCE00F4A0B1 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		031086D81E677FCE00F4A0B1 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		0310873F1E67805900F4A0B1 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
+		031087401E67805900F4A0B1 /* convert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = convert.png; sourceTree = "<group>"; };
+		031087411E67805900F4A0B1 /* OEPopVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OEPopVideoController.h; sourceTree = "<group>"; };
+		031087421E67805900F4A0B1 /* OEPopVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OEPopVideoController.m; sourceTree = "<group>"; };
+		031087431E67805900F4A0B1 /* OEProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OEProgressView.h; sourceTree = "<group>"; };
+		031087441E67805900F4A0B1 /* OEProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OEProgressView.m; sourceTree = "<group>"; };
+		031087451E67805900F4A0B1 /* OETabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OETabbar.h; sourceTree = "<group>"; };
+		031087461E67805900F4A0B1 /* OETabbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OETabbar.m; sourceTree = "<group>"; };
+		031087471E67805900F4A0B1 /* RecordButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordButton.h; sourceTree = "<group>"; };
+		031087481E67805900F4A0B1 /* RecordButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordButton.m; sourceTree = "<group>"; };
 		0319D5A41E64B4B3004B25B2 /* FilterCustomCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCustomCollectionCell.h; sourceTree = "<group>"; };
 		0319D5A51E64B4B3004B25B2 /* FilterCustomCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCustomCollectionCell.m; sourceTree = "<group>"; };
 		0319D5A61E64B4B3004B25B2 /* FilterCustomCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCustomCollectionCell.xib; sourceTree = "<group>"; };
@@ -296,6 +320,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		031086D31E677FCE00F4A0B1 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				031086D41E677FCE00F4A0B1 /* MBProgressHUD+MJ.h */,
+				031086D51E677FCE00F4A0B1 /* MBProgressHUD+MJ.m */,
+				031086D61E677FCE00F4A0B1 /* MBProgressHUD.bundle */,
+				031086D71E677FCE00F4A0B1 /* MBProgressHUD.h */,
+				031086D81E677FCE00F4A0B1 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		0310873E1E67805900F4A0B1 /* OEPopVideo */ = {
+			isa = PBXGroup;
+			children = (
+				0310873F1E67805900F4A0B1 /* cancel.png */,
+				031087401E67805900F4A0B1 /* convert.png */,
+				031087411E67805900F4A0B1 /* OEPopVideoController.h */,
+				031087421E67805900F4A0B1 /* OEPopVideoController.m */,
+				031087431E67805900F4A0B1 /* OEProgressView.h */,
+				031087441E67805900F4A0B1 /* OEProgressView.m */,
+				031087451E67805900F4A0B1 /* OETabbar.h */,
+				031087461E67805900F4A0B1 /* OETabbar.m */,
+				031087471E67805900F4A0B1 /* RecordButton.h */,
+				031087481E67805900F4A0B1 /* RecordButton.m */,
+			);
+			path = OEPopVideo;
+			sourceTree = "<group>";
+		};
 		03BD9CF81E64A44E00671B85 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +384,8 @@
 		219275541E627FD8004EF85F /* whqFor */ = {
 			isa = PBXGroup;
 			children = (
+				0310873E1E67805900F4A0B1 /* OEPopVideo */,
+				031086D31E677FCE00F4A0B1 /* MBProgressHUD */,
 				21F0F0D51E63000200A4E71D /* AGImagePickerController */,
 				21F0F0A51E62D3C600A4E71D /* TZImagePickerController */,
 				219275AA1E6292B6004EF85F /* NewFootprintModule */,
@@ -684,6 +739,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				219275A61E6290FA004EF85F /* 林峰.png in Resources */,
+				0310871A1E677FCE00F4A0B1 /* MBProgressHUD.bundle in Resources */,
 				219275A41E6290FA004EF85F /* reply.png in Resources */,
 				21F0F08A1E62AD5700A4E71D /* CAM1.png in Resources */,
 				2192759F1E6290FA004EF85F /* location.png in Resources */,
@@ -697,6 +753,7 @@
 				219275651E627FD8004EF85F /* LaunchScreen.storyboard in Resources */,
 				0319D5A81E64B4B3004B25B2 /* FilterCustomCollectionCell.xib in Resources */,
 				21F0F0911E62AD5700A4E71D /* WNImagePicker.xib in Resources */,
+				031087491E67805900F4A0B1 /* cancel.png in Resources */,
 				219275A01E6290FA004EF85F /* picture1.png in Resources */,
 				219275621E627FD8004EF85F /* Assets.xcassets in Resources */,
 				219275A31E6290FA004EF85F /* picture4.png in Resources */,
@@ -712,6 +769,7 @@
 				216B21331E64739F007D3BD3 /* test.png in Resources */,
 				033B93DE1E6525F500F50881 /* CutPhotoPIDCustomCell.xib in Resources */,
 				219275601E627FD8004EF85F /* Main.storyboard in Resources */,
+				0310874A1E67805900F4A0B1 /* convert.png in Resources */,
 				219275A11E6290FA004EF85F /* picture2.png in Resources */,
 				03BD9CF71E64A20400671B85 /* EditPhotosCustomCell.xib in Resources */,
 			);
@@ -799,6 +857,7 @@
 				21F0F0941E62BB5F00A4E71D /* PhotosViewController.m in Sources */,
 				21F0F0971E62BFD600A4E71D /* EditPhotosViewController.m in Sources */,
 				21F0F08E1E62AD5700A4E71D /* UIImage+Additions.m in Sources */,
+				0310871B1E677FCE00F4A0B1 /* MBProgressHUD.m in Sources */,
 				033B93E41E6531C400F50881 /* CustomSliderView.m in Sources */,
 				033709821E66314E00D7DD35 /* WhqForConst.m in Sources */,
 				21F0F0C21E62D3C600A4E71D /* TZAssetCell.m in Sources */,
@@ -806,6 +865,8 @@
 				21F0F0C31E62D3C600A4E71D /* TZAssetModel.m in Sources */,
 				21F0F0C81E62D3C600A4E71D /* TZImagePickerController.m in Sources */,
 				216B21371E64749C007D3BD3 /* ImageUtil.m in Sources */,
+				0310874D1E67805900F4A0B1 /* OETabbar.m in Sources */,
+				0310874E1E67805900F4A0B1 /* RecordButton.m in Sources */,
 				21F0F0C51E62D3C600A4E71D /* TZImageCropManager.m in Sources */,
 				21F0F0CD1E62D3C600A4E71D /* TZVideoPlayerController.m in Sources */,
 				219275B61E62942E004EF85F /* ImagePickerChooseCell.m in Sources */,
@@ -816,9 +877,12 @@
 				21F0F0CA1E62D3C600A4E71D /* TZPhotoPreviewCell.m in Sources */,
 				219275571E627FD8004EF85F /* main.m in Sources */,
 				21F0F0F01E63000200A4E71D /* AGImagePickerController+Helper.m in Sources */,
+				0310874C1E67805900F4A0B1 /* OEProgressView.m in Sources */,
+				031087191E677FCE00F4A0B1 /* MBProgressHUD+MJ.m in Sources */,
 				21F0F0FB1E63000200A4E71D /* ALAsset+AGIPC.m in Sources */,
 				21F0F0C41E62D3C600A4E71D /* TZGifPhotoPreviewController.m in Sources */,
 				21F0F0901E62AD5700A4E71D /* WNImagePicker.m in Sources */,
+				0310874B1E67805900F4A0B1 /* OEPopVideoController.m in Sources */,
 				21F0F08D1E62AD5700A4E71D /* MutiCollectionLayout.m in Sources */,
 				21F0F0F31E63000200A4E71D /* AGImagePreviewController.m in Sources */,
 				21F0F0CE1E62D3C600A4E71D /* UIView+Layout.m in Sources */,

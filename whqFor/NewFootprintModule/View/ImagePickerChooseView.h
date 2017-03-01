@@ -10,6 +10,8 @@
 
 typedef void (^ImagePickerBlock)();
 @interface ImagePickerChooseView : UIView
+
+@property (nonatomic, copy) void(^smallVideoBlock)();
 -(id)initWithFrame:(CGRect)frame andAboveView:(UIView *)bgView;
 -(void)addImagePickerChooseView;
 -(void)setImagePickerBlock:(ImagePickerBlock)block;
