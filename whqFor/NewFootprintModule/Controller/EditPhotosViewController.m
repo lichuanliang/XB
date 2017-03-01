@@ -68,7 +68,7 @@
     self.assetIndex = 0;
     self.filterLibraryBtn.selected = YES;
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.topView];
     [self.topView addSubview:self.backBtn];
     [self.topView addSubview:self.continueBtn];
@@ -81,7 +81,7 @@
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 60, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 200) collectionViewLayout:flowLayout];
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 60, [UIScreen mainScreen].bounds.size.width, 436) collectionViewLayout:flowLayout];
     collectionView.delegate = self;
     collectionView.dataSource = self;
     flowLayout.itemSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 200);
@@ -243,6 +243,7 @@
     //亮度调节视图
     self.beautyPhotoTypeCollection.variabilityViewBlock = ^(){
         
+        weakSelf.customSliderView.sliderView.value = 0.0;
         weakSelf.customSliderView.hidden = NO;
         weakSelf.customSliderView.beautyImageType = BeautyImageTypeVariable;
         [weakSelf.view addSubview:weakSelf.customSliderView];
@@ -257,6 +258,7 @@
     
     //对比度调节视图
     self.beautyPhotoTypeCollection.contrastViewBlock = ^(){
+        weakSelf.customSliderView.sliderView.value = 0.0;
         weakSelf.customSliderView.hidden = NO;
         weakSelf.customSliderView.beautyImageType = BeautyImageTypevContrast;
         [weakSelf.view addSubview:weakSelf.customSliderView];
@@ -270,6 +272,7 @@
     
     //色温调节视图 --暂时没写---
     self.beautyPhotoTypeCollection.colorTemViewBlock = ^(){
+        weakSelf.customSliderView.sliderView.value = 0.0;
         weakSelf.customSliderView.hidden = NO;
         weakSelf.customSliderView.beautyImageType = BeautyImageTypeColourTmp;
         [weakSelf.view addSubview:weakSelf.customSliderView];
@@ -279,6 +282,7 @@
     
     //饱和度调节视图
     self.beautyPhotoTypeCollection.saturableViewBlock = ^(){
+        weakSelf.customSliderView.sliderView.value = 0.0;
         weakSelf.customSliderView.hidden = NO;
         weakSelf.customSliderView.beautyImageType = BeautyImageTypeSaturability;
         [weakSelf.view addSubview:weakSelf.customSliderView];
@@ -514,7 +518,7 @@
 - (UIButton *)filterLibraryBtn {
     if (!_filterLibraryBtn) {
         _filterLibraryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _filterLibraryBtn.frame = CGRectMake(0, screenHeight - 130, 90, 33);
+        _filterLibraryBtn.frame = CGRectMake(0, screenHeight - 160, 90, 33);
         _filterLibraryBtn.backgroundColor = [UIColor whiteColor];
         [_filterLibraryBtn setTitle:@"滤镜库" forState:UIControlStateNormal];
         [_filterLibraryBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -527,7 +531,7 @@
 - (UIButton *)beautyPhotoBtn {
     if (!_beautyPhotoBtn) {
         _beautyPhotoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _beautyPhotoBtn.frame = CGRectMake(93, screenHeight - 130, 90, 33);
+        _beautyPhotoBtn.frame = CGRectMake(93, screenHeight - 160, 90, 33);
         _beautyPhotoBtn.backgroundColor = [UIColor whiteColor];
         [_beautyPhotoBtn setTitle:@"美化照片" forState:UIControlStateNormal];
         [_beautyPhotoBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -539,14 +543,14 @@
 
 - (FilterTypeCollectionView *)filterTypeCollectionView {
     if (!_filterTypeCollectionView) {
-        _filterTypeCollectionView = [[FilterTypeCollectionView alloc] initWithFrame:CGRectMake(0, screenHeight - 90, screenWidth, 100)];
+        _filterTypeCollectionView = [[FilterTypeCollectionView alloc] initWithFrame:CGRectMake(0, screenHeight - 120, screenWidth, 100)];
     }
     return _filterTypeCollectionView;
 }
 
 - (BeautyPhotoTypeCollection *)beautyPhotoTypeCollection {
     if (!_beautyPhotoTypeCollection) {
-        _beautyPhotoTypeCollection = [[BeautyPhotoTypeCollection alloc] initWithFrame:CGRectMake(0, screenHeight - 90, screenWidth, 100)];
+        _beautyPhotoTypeCollection = [[BeautyPhotoTypeCollection alloc] initWithFrame:CGRectMake(0, screenHeight - 120, screenWidth, 100)];
         _beautyPhotoTypeCollection.hidden = YES;
     }
     return _beautyPhotoTypeCollection;
@@ -554,7 +558,7 @@
 
 - (CutPIDCollectionView *)cutPIDCollectionView {
     if (!_cutPIDCollectionView) {
-        _cutPIDCollectionView = [[CutPIDCollectionView alloc] initWithFrame:CGRectMake(0, screenHeight - 140, screenWidth, 150)];
+        _cutPIDCollectionView = [[CutPIDCollectionView alloc] initWithFrame:CGRectMake(0, screenHeight - 170, screenWidth, 150)];
         _cutPIDCollectionView.backgroundColor = [UIColor whiteColor];
     }
     return _cutPIDCollectionView;
@@ -563,7 +567,7 @@
 - (CustomSliderView *)customSliderView {
     if (!_customSliderView) {
         _customSliderView = [[NSBundle mainBundle] loadNibNamed:@"CustomSliderView" owner:nil options:nil].lastObject;
-        _customSliderView.frame = CGRectMake(0, screenHeight - 150, screenWidth, 150);
+        _customSliderView.frame = CGRectMake(0, screenHeight - 170, screenWidth, 150);
         _customSliderView.backgroundColor = [UIColor whiteColor];
     }
     return _customSliderView;

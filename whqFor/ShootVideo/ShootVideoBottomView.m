@@ -36,7 +36,7 @@
 - (void)setupButtons {
     
     CGFloat baseWidth = screenWidth/8;
-    RecordButton *videoButton = [[RecordButton alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
+    RecordButton *videoButton = [[RecordButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
     videoButton.delegate = self;
     videoButton.center = CGPointMake(baseWidth*4, self.frame.size.height/2);
     self.videoButton = videoButton;

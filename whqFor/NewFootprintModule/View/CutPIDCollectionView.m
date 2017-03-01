@@ -31,9 +31,9 @@ static NSString *const customCellID = @"CutPhotoPIDCustomCell";
 
 - (void)layoutSubviews {
     
-    self.cutPIDCollectionView.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 80);
-    self.cancelBtn.frame = CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width/2, 40);
-    self.doneBtn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width/2, 100, [UIScreen mainScreen].bounds.size.width/2, 40);
+    self.cutPIDCollectionView.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 120);
+    self.cancelBtn.frame = CGRectMake(0, 120, [UIScreen mainScreen].bounds.size.width/2, 40);
+    self.doneBtn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width/2, 120, [UIScreen mainScreen].bounds.size.width/2, 40);
     [super layoutSubviews];
     
 }
