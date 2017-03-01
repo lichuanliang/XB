@@ -10,12 +10,6 @@
 		031087191E677FCE00F4A0B1 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 031086D51E677FCE00F4A0B1 /* MBProgressHUD+MJ.m */; };
 		0310871A1E677FCE00F4A0B1 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 031086D61E677FCE00F4A0B1 /* MBProgressHUD.bundle */; };
 		0310871B1E677FCE00F4A0B1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 031086D81E677FCE00F4A0B1 /* MBProgressHUD.m */; };
-		031087491E67805900F4A0B1 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 0310873F1E67805900F4A0B1 /* cancel.png */; };
-		0310874A1E67805900F4A0B1 /* convert.png in Resources */ = {isa = PBXBuildFile; fileRef = 031087401E67805900F4A0B1 /* convert.png */; };
-		0310874B1E67805900F4A0B1 /* OEPopVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031087421E67805900F4A0B1 /* OEPopVideoController.m */; };
-		0310874C1E67805900F4A0B1 /* OEProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031087441E67805900F4A0B1 /* OEProgressView.m */; };
-		0310874D1E67805900F4A0B1 /* OETabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 031087461E67805900F4A0B1 /* OETabbar.m */; };
-		0310874E1E67805900F4A0B1 /* RecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 031087481E67805900F4A0B1 /* RecordButton.m */; };
 		0319D5A71E64B4B3004B25B2 /* FilterCustomCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0319D5A51E64B4B3004B25B2 /* FilterCustomCollectionCell.m */; };
 		0319D5A81E64B4B3004B25B2 /* FilterCustomCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0319D5A61E64B4B3004B25B2 /* FilterCustomCollectionCell.xib */; };
 		0319D5AB1E64B715004B25B2 /* FilterTypeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0319D5AA1E64B715004B25B2 /* FilterTypeCollectionView.m */; };
@@ -34,6 +28,10 @@
 		03BD9CFC1E64A7D200671B85 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BD9CFB1E64A7D200671B85 /* Photos.framework */; };
 		216B21331E64739F007D3BD3 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 216B21321E64739F007D3BD3 /* test.png */; };
 		216B21371E64749C007D3BD3 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 216B21361E64749C007D3BD3 /* ImageUtil.m */; };
+		216B214A1E6709FE007D3BD3 /* OEPopVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 216B21431E6709FE007D3BD3 /* OEPopVideoController.m */; };
+		216B214B1E6709FE007D3BD3 /* RecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 216B21451E6709FE007D3BD3 /* RecordButton.m */; };
+		216B214C1E6709FE007D3BD3 /* ShootVideoBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 216B21471E6709FE007D3BD3 /* ShootVideoBottomView.m */; };
+		216B214D1E6709FE007D3BD3 /* VideoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 216B21491E6709FE007D3BD3 /* VideoProgressView.m */; };
 		219275571E627FD8004EF85F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 219275561E627FD8004EF85F /* main.m */; };
 		2192755A1E627FD8004EF85F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 219275591E627FD8004EF85F /* AppDelegate.m */; };
 		219275601E627FD8004EF85F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2192755E1E627FD8004EF85F /* Main.storyboard */; };
@@ -129,16 +127,6 @@
 		031086D61E677FCE00F4A0B1 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
 		031086D71E677FCE00F4A0B1 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		031086D81E677FCE00F4A0B1 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		0310873F1E67805900F4A0B1 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
-		031087401E67805900F4A0B1 /* convert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = convert.png; sourceTree = "<group>"; };
-		031087411E67805900F4A0B1 /* OEPopVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OEPopVideoController.h; sourceTree = "<group>"; };
-		031087421E67805900F4A0B1 /* OEPopVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OEPopVideoController.m; sourceTree = "<group>"; };
-		031087431E67805900F4A0B1 /* OEProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OEProgressView.h; sourceTree = "<group>"; };
-		031087441E67805900F4A0B1 /* OEProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OEProgressView.m; sourceTree = "<group>"; };
-		031087451E67805900F4A0B1 /* OETabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OETabbar.h; sourceTree = "<group>"; };
-		031087461E67805900F4A0B1 /* OETabbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OETabbar.m; sourceTree = "<group>"; };
-		031087471E67805900F4A0B1 /* RecordButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordButton.h; sourceTree = "<group>"; };
-		031087481E67805900F4A0B1 /* RecordButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordButton.m; sourceTree = "<group>"; };
 		0319D5A41E64B4B3004B25B2 /* FilterCustomCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCustomCollectionCell.h; sourceTree = "<group>"; };
 		0319D5A51E64B4B3004B25B2 /* FilterCustomCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCustomCollectionCell.m; sourceTree = "<group>"; };
 		0319D5A61E64B4B3004B25B2 /* FilterCustomCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCustomCollectionCell.xib; sourceTree = "<group>"; };
@@ -170,6 +158,14 @@
 		216B21341E64749C007D3BD3 /* ColorMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMatrix.h; sourceTree = "<group>"; };
 		216B21351E64749C007D3BD3 /* ImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtil.h; sourceTree = "<group>"; };
 		216B21361E64749C007D3BD3 /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
+		216B21421E6709FE007D3BD3 /* OEPopVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OEPopVideoController.h; sourceTree = "<group>"; };
+		216B21431E6709FE007D3BD3 /* OEPopVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OEPopVideoController.m; sourceTree = "<group>"; };
+		216B21441E6709FE007D3BD3 /* RecordButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordButton.h; sourceTree = "<group>"; };
+		216B21451E6709FE007D3BD3 /* RecordButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordButton.m; sourceTree = "<group>"; };
+		216B21461E6709FE007D3BD3 /* ShootVideoBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShootVideoBottomView.h; sourceTree = "<group>"; };
+		216B21471E6709FE007D3BD3 /* ShootVideoBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShootVideoBottomView.m; sourceTree = "<group>"; };
+		216B21481E6709FE007D3BD3 /* VideoProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoProgressView.h; sourceTree = "<group>"; };
+		216B21491E6709FE007D3BD3 /* VideoProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoProgressView.m; sourceTree = "<group>"; };
 		219275521E627FD8004EF85F /* whqFor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whqFor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		219275561E627FD8004EF85F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		219275581E627FD8004EF85F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -332,23 +328,6 @@
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
-		0310873E1E67805900F4A0B1 /* OEPopVideo */ = {
-			isa = PBXGroup;
-			children = (
-				0310873F1E67805900F4A0B1 /* cancel.png */,
-				031087401E67805900F4A0B1 /* convert.png */,
-				031087411E67805900F4A0B1 /* OEPopVideoController.h */,
-				031087421E67805900F4A0B1 /* OEPopVideoController.m */,
-				031087431E67805900F4A0B1 /* OEProgressView.h */,
-				031087441E67805900F4A0B1 /* OEProgressView.m */,
-				031087451E67805900F4A0B1 /* OETabbar.h */,
-				031087461E67805900F4A0B1 /* OETabbar.m */,
-				031087471E67805900F4A0B1 /* RecordButton.h */,
-				031087481E67805900F4A0B1 /* RecordButton.m */,
-			);
-			path = OEPopVideo;
-			sourceTree = "<group>";
-		};
 		03BD9CF81E64A44E00671B85 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,6 +336,21 @@
 				330E346F1AE6BC5466589AD6 /* libPods-whqFor.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		216B21411E6709FE007D3BD3 /* ShootVideo */ = {
+			isa = PBXGroup;
+			children = (
+				216B21421E6709FE007D3BD3 /* OEPopVideoController.h */,
+				216B21431E6709FE007D3BD3 /* OEPopVideoController.m */,
+				216B21441E6709FE007D3BD3 /* RecordButton.h */,
+				216B21451E6709FE007D3BD3 /* RecordButton.m */,
+				216B21461E6709FE007D3BD3 /* ShootVideoBottomView.h */,
+				216B21471E6709FE007D3BD3 /* ShootVideoBottomView.m */,
+				216B21481E6709FE007D3BD3 /* VideoProgressView.h */,
+				216B21491E6709FE007D3BD3 /* VideoProgressView.m */,
+			);
+			path = ShootVideo;
 			sourceTree = "<group>";
 		};
 		219275491E627FD8004EF85F = {
@@ -384,7 +378,7 @@
 		219275541E627FD8004EF85F /* whqFor */ = {
 			isa = PBXGroup;
 			children = (
-				0310873E1E67805900F4A0B1 /* OEPopVideo */,
+				216B21411E6709FE007D3BD3 /* ShootVideo */,
 				031086D31E677FCE00F4A0B1 /* MBProgressHUD */,
 				21F0F0D51E63000200A4E71D /* AGImagePickerController */,
 				21F0F0A51E62D3C600A4E71D /* TZImagePickerController */,
@@ -753,7 +747,6 @@
 				219275651E627FD8004EF85F /* LaunchScreen.storyboard in Resources */,
 				0319D5A81E64B4B3004B25B2 /* FilterCustomCollectionCell.xib in Resources */,
 				21F0F0911E62AD5700A4E71D /* WNImagePicker.xib in Resources */,
-				031087491E67805900F4A0B1 /* cancel.png in Resources */,
 				219275A01E6290FA004EF85F /* picture1.png in Resources */,
 				219275621E627FD8004EF85F /* Assets.xcassets in Resources */,
 				219275A31E6290FA004EF85F /* picture4.png in Resources */,
@@ -769,7 +762,6 @@
 				216B21331E64739F007D3BD3 /* test.png in Resources */,
 				033B93DE1E6525F500F50881 /* CutPhotoPIDCustomCell.xib in Resources */,
 				219275601E627FD8004EF85F /* Main.storyboard in Resources */,
-				0310874A1E67805900F4A0B1 /* convert.png in Resources */,
 				219275A11E6290FA004EF85F /* picture2.png in Resources */,
 				03BD9CF71E64A20400671B85 /* EditPhotosCustomCell.xib in Resources */,
 			);
@@ -844,11 +836,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				216B214B1E6709FE007D3BD3 /* RecordButton.m in Sources */,
 				21F0F0F41E63000200A4E71D /* AGIPCAlbumsController.m in Sources */,
 				21F0F0881E62AD5700A4E71D /* AlbumPhotoCell.m in Sources */,
 				21F0F0F51E63000200A4E71D /* AGIPCAssetsController.m in Sources */,
 				21F0F0F21E63000200A4E71D /* AGImagePickerController.m in Sources */,
 				21F0F0FA1E63000200A4E71D /* AGPreviewScrollView.m in Sources */,
+				216B214A1E6709FE007D3BD3 /* OEPopVideoController.m in Sources */,
 				2192755A1E627FD8004EF85F /* AppDelegate.m in Sources */,
 				033B93D91E6513BF00F50881 /* BeautyPhotoTypeCollection.m in Sources */,
 				03BD9CF61E64A20400671B85 /* EditPhotosCustomCell.m in Sources */,
@@ -865,8 +859,6 @@
 				21F0F0C31E62D3C600A4E71D /* TZAssetModel.m in Sources */,
 				21F0F0C81E62D3C600A4E71D /* TZImagePickerController.m in Sources */,
 				216B21371E64749C007D3BD3 /* ImageUtil.m in Sources */,
-				0310874D1E67805900F4A0B1 /* OETabbar.m in Sources */,
-				0310874E1E67805900F4A0B1 /* RecordButton.m in Sources */,
 				21F0F0C51E62D3C600A4E71D /* TZImageCropManager.m in Sources */,
 				21F0F0CD1E62D3C600A4E71D /* TZVideoPlayerController.m in Sources */,
 				219275B61E62942E004EF85F /* ImagePickerChooseCell.m in Sources */,
@@ -877,14 +869,13 @@
 				21F0F0CA1E62D3C600A4E71D /* TZPhotoPreviewCell.m in Sources */,
 				219275571E627FD8004EF85F /* main.m in Sources */,
 				21F0F0F01E63000200A4E71D /* AGImagePickerController+Helper.m in Sources */,
-				0310874C1E67805900F4A0B1 /* OEProgressView.m in Sources */,
 				031087191E677FCE00F4A0B1 /* MBProgressHUD+MJ.m in Sources */,
 				21F0F0FB1E63000200A4E71D /* ALAsset+AGIPC.m in Sources */,
 				21F0F0C41E62D3C600A4E71D /* TZGifPhotoPreviewController.m in Sources */,
 				21F0F0901E62AD5700A4E71D /* WNImagePicker.m in Sources */,
-				0310874B1E67805900F4A0B1 /* OEPopVideoController.m in Sources */,
 				21F0F08D1E62AD5700A4E71D /* MutiCollectionLayout.m in Sources */,
 				21F0F0F31E63000200A4E71D /* AGImagePreviewController.m in Sources */,
+				216B214D1E6709FE007D3BD3 /* VideoProgressView.m in Sources */,
 				21F0F0CE1E62D3C600A4E71D /* UIView+Layout.m in Sources */,
 				21F0F0D41E62D64600A4E71D /* TZTestCell.m in Sources */,
 				21F0F0F91E63000200A4E71D /* AGIPCToolbarItem.m in Sources */,
@@ -901,6 +892,7 @@
 				21F0F0F81E63000200A4E71D /* AGIPCPreviewController.m in Sources */,
 				21F0F0871E62AD5700A4E71D /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				21F0F0A31E62D11A00A4E71D /* CustomPhotosStreamCell.m in Sources */,
+				216B214C1E6709FE007D3BD3 /* ShootVideoBottomView.m in Sources */,
 				0319D5AB1E64B715004B25B2 /* FilterTypeCollectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

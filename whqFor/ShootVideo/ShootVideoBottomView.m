@@ -1,17 +1,17 @@
 //
-//  OETabbar.m
-//  LearnOpenGLESWithGPUImage
+//  ShootVideoBottomView.m
+//  whqFor
 //
-//  Created by apple on 16/7/9.
-//  Copyright © 2016年 林伟池. All rights reserved.
+//  Created by Mr.Wang on 2017/3/1.
+//  Copyright © 2017年 Mr.wang. All rights reserved.
 //
 
-#import "OETabbar.h"
+#import "ShootVideoBottomView.h"
 #import "RecordButton.h"
-#import "OEProgressView.h"
+#import "VideoProgressView.h"
 
 #define OEScreenWidth ([UIScreen mainScreen].bounds.size.width)
-@interface OETabbar()<RecordButtonDelegate>
+@interface ShootVideoBottomView()<RecordButtonDelegate>
 
 /** 录制视频按钮*/
 @property (nonatomic,weak) RecordButton *videoButton;
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation OETabbar
+@implementation ShootVideoBottomView
 
 -(instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -41,7 +41,7 @@
     videoButton.delegate = self;
     videoButton.center = CGPointMake(baseWidth*4, self.frame.size.height/2);
     self.videoButton = videoButton;
-
+    
     [self addSubview:videoButton];
     [self addSubview:self.bottomLeftBtn];
     [self addSubview:self.bottomRightBtn];
@@ -128,9 +128,9 @@
 
 #pragma mark - lazyLoading
 
--(OEProgressView *)progressView{
+-(VideoProgressView *)progressView{
     if( _progressView == nil) {
-        _progressView = [[OEProgressView alloc] initWithFrame:CGRectMake(0, 0, OEScreenWidth, 3)];
+        _progressView = [[VideoProgressView alloc] initWithFrame:CGRectMake(0, 0, OEScreenWidth, 3)];
         _progressView.backgroundColor = [UIColor greenColor];
         
     }
@@ -172,5 +172,6 @@
     }
     [self.progressView resume];
 }
+
 
 @end

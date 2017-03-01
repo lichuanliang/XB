@@ -1,14 +1,16 @@
 //
-//  OEProgressView.m
-//  LearnOpenGLESWithGPUImage
+//  VideoProgressView.m
+//  whqFor
 //
-//  Created by apple on 16/7/8.
-//  Copyright © 2016年 林伟池. All rights reserved.
+//  Created by Mr.Wang on 2017/3/1.
+//  Copyright © 2017年 Mr.wang. All rights reserved.
 //
 
-#import "OEProgressView.h"
+#import "VideoProgressView.h"
+
 #define OEScreenWidth ([UIScreen mainScreen].bounds.size.width)
-@implementation OEProgressView
+
+@implementation VideoProgressView
 
 - (void)startCompletion:(void (^ __nullable)(BOOL finished))completion {
     
@@ -23,7 +25,8 @@
     
 }
 - (void)resume {
-   self.bounds = CGRectMake(0, 0, OEScreenWidth, self.frame.size.height);
+    self.bounds = CGRectMake(0, 0, OEScreenWidth, self.frame.size.height);
 }
+
 
 @end

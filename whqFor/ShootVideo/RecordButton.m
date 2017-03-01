@@ -1,17 +1,18 @@
 //
 //  RecordButton.m
-//  LearnOpenGLESWithGPUImage
+//  whqFor
 //
-//  Created by apple on 16/7/6.
-//  Copyright © 2016年 林伟池. All rights reserved.
+//  Created by Mr.Wang on 2017/3/1.
+//  Copyright © 2017年 Mr.wang. All rights reserved.
 //
 
 #import "RecordButton.h"
 
-
 @interface RecordButton()
+
 @property (nonatomic,strong) UIBezierPath *path;
 @property (nonatomic,strong) CAShapeLayer *shapeLayer;
+
 @end
 @implementation RecordButton
 

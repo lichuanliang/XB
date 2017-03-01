@@ -1,14 +1,14 @@
 //
-//  OEProgressView.h
-//  LearnOpenGLESWithGPUImage
+//  VideoProgressView.h
+//  whqFor
 //
-//  Created by apple on 16/7/8.
-//  Copyright © 2016年 林伟池. All rights reserved.
+//  Created by Mr.Wang on 2017/3/1.
+//  Copyright © 2017年 Mr.wang. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface OEProgressView : UIView
+@interface VideoProgressView : UIView
 
 @property (nonatomic, assign) NSTimeInterval duration;
 
@@ -16,5 +16,5 @@
 
 - (void)resume;
 
-@end
 
+@end

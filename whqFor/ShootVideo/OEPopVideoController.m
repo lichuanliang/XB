@@ -8,10 +8,8 @@
 
 #import "OEPopVideoController.h"
 #import "GPUImage.h"
-
 #import <objc/runtime.h>
-
-#import "OETabbar.h"
+#import "ShootVideoBottomView.h"
 
 #define OEScreenWidth ([UIScreen mainScreen].bounds.size.width)
 #define OEScreenHeight ([UIScreen mainScreen].bounds.size.height)
@@ -20,7 +18,7 @@
 #define OEPathToMovie ([NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie4.m4v"])
 
 
-@interface OEPopVideoController()<OETabbarDelegate,GPUImageVideoCameraDelegate>
+@interface OEPopVideoController()<ShootVideoBottomViewDelegate,GPUImageVideoCameraDelegate>
 
 @property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
 @property (nonatomic, strong) GPUImageOutput<GPUImageInput> *filter;
@@ -30,7 +28,7 @@
 @property (nonatomic, strong) UIView *popupView;
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) UIWindow *applicationWindow;
-@property (nonatomic, strong) OETabbar *tabbar;
+@property (nonatomic, strong) ShootVideoBottomView *tabbar;
 @property (nonatomic, assign) NSTimeInterval nowTime;
 @property (nonatomic, assign) BOOL dismissAnimated;
 /** topView(包括取消、切换摄像头等)*/
@@ -118,7 +116,7 @@
 - (void)setupTabbar {
     
     CGRect rect = CGRectMake(0, OEScreenHeight-70, OEScreenWidth, 70);
-    OETabbar *tabbar = [[OETabbar alloc] initWithFrame:rect];
+    ShootVideoBottomView *tabbar = [[ShootVideoBottomView alloc] initWithFrame:rect];
     tabbar.delegate = self;
     tabbar.backgroundColor = [UIColor blackColor];
     [self.popupView addSubview:tabbar];
@@ -142,7 +140,7 @@
     [_videoCamera rotateCamera];
 }
 
-#pragma mark - OETabBarDelegate
+#pragma mark - ShootVideoBottomViewDelegate
 
 -(void)tabbarDidCancelRecord {
     

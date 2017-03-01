@@ -305,20 +305,15 @@
     {
         [library writeVideoAtPathToSavedPhotosAlbum:movieURL completionBlock:^(NSURL *assetURL, NSError *error)
          {
-             
-             //             UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleAlert];
+
              if (error) {
                  
                  [MBProgressHUD showError:@"error"];
-                 //                      [alert addAction:[UIAlertAction actionWithTitle:@"error" style:UIAlertActionStyleDefault handler:nil]];
              } else {
-                 //                     [alert addAction:[UIAlertAction actionWithTitle:@"success" style:UIAlertActionStyleDefault handler:nil]];
                  [MBProgressHUD showSuccess:@"success"];
              }
-             //              [self presentViewController:alert animated:YES completion:nil];
          }];
     }
-    
 }
 
 
