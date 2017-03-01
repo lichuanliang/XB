@@ -11,7 +11,6 @@
 #import <AssetsLibrary/ALAsset.h>
 #import <Photos/PHImageManager.h>
 #import "FilterTypeCollectionView.h"
-//#import "UIImage+ImageScale.h"
 #import "BeautyPhotoTypeCollection.h"
 #import "CutPIDCollectionView.h"
 #import "CustomSliderView.h"
@@ -21,15 +20,6 @@
 #define kWidth 50
 #define kHeight 70
 #define kSpace 22
-
-#define WIDTH [UIScreen mainScreen].bounds.size.width
-#define HEIGHT [UIScreen mainScreen].bounds.size.height
-
-#define kBarHeight 55
-#define kTitleWidth 60
-#define kTitleHeight 20
-#define kCancelHeight 30
-
 
 @interface EditPhotosViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -208,23 +198,23 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if ((scrollView.contentOffset.x) / WIDTH == 0) {
+    if ((scrollView.contentOffset.x) / screenWidth == 0) {
         self.assetIndex = 0;
-    }else if ((scrollView.contentOffset.x) / WIDTH == 1) {
+    }else if ((scrollView.contentOffset.x) / screenWidth == 1) {
         self.assetIndex = 1;
-    }else if ((scrollView.contentOffset.x) / WIDTH == 2) {
+    }else if ((scrollView.contentOffset.x) / screenWidth == 2) {
         self.assetIndex = 2;
-    }else if ((scrollView.contentOffset.x) / WIDTH == 3) {
+    }else if ((scrollView.contentOffset.x) / screenWidth == 3) {
         self.assetIndex = 3;
-    }else if ((scrollView.contentOffset.x) / WIDTH == 4) {
+    }else if ((scrollView.contentOffset.x) / screenWidth == 4) {
         self.assetIndex = 4;
-    }else if ((scrollView.contentOffset.x) / WIDTH == 5) {
+    }else if ((scrollView.contentOffset.x) / screenWidth == 5) {
         self.assetIndex = 5;
-    }else if ((scrollView.contentOffset.x) / WIDTH == 6) {
+    }else if ((scrollView.contentOffset.x) / screenWidth == 6) {
         self.assetIndex = 6;
-    }else if ((scrollView.contentOffset.x) / WIDTH == 7) {
+    }else if ((scrollView.contentOffset.x) / screenWidth == 7) {
         self.assetIndex = 7;
-    }else if ((scrollView.contentOffset.x) / WIDTH == 8) {
+    }else if ((scrollView.contentOffset.x) / screenWidth == 8) {
         self.assetIndex = 8;
     }
 }
@@ -496,7 +486,7 @@
 - (UIButton *)continueBtn {
     if (!_continueBtn) {
         _continueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _continueBtn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 50, 25, 40, 30);
+        _continueBtn.frame = CGRectMake(screenWidth - 50, 25, 40, 30);
         [_continueBtn setTitle:@"继续" forState:UIControlStateNormal];
         [_continueBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_continueBtn addTarget:self action:@selector(continueBtnOnClick) forControlEvents:UIControlEventTouchUpInside];
@@ -506,7 +496,7 @@
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width/2 - 50, 15, 100, 50)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/2 - 50, 15, 100, 50)];
         _titleLabel.textColor = [UIColor blackColor];
         _titleLabel.font = [UIFont systemFontOfSize:18];
         _titleLabel.text = @"编辑图片";
@@ -524,7 +514,7 @@
 - (UIButton *)filterLibraryBtn {
     if (!_filterLibraryBtn) {
         _filterLibraryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _filterLibraryBtn.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 130, 90, 33);
+        _filterLibraryBtn.frame = CGRectMake(0, screenHeight - 130, 90, 33);
         _filterLibraryBtn.backgroundColor = [UIColor whiteColor];
         [_filterLibraryBtn setTitle:@"滤镜库" forState:UIControlStateNormal];
         [_filterLibraryBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -537,7 +527,7 @@
 - (UIButton *)beautyPhotoBtn {
     if (!_beautyPhotoBtn) {
         _beautyPhotoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _beautyPhotoBtn.frame = CGRectMake(93, [UIScreen mainScreen].bounds.size.height - 130, 90, 33);
+        _beautyPhotoBtn.frame = CGRectMake(93, screenHeight - 130, 90, 33);
         _beautyPhotoBtn.backgroundColor = [UIColor whiteColor];
         [_beautyPhotoBtn setTitle:@"美化照片" forState:UIControlStateNormal];
         [_beautyPhotoBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -549,14 +539,14 @@
 
 - (FilterTypeCollectionView *)filterTypeCollectionView {
     if (!_filterTypeCollectionView) {
-        _filterTypeCollectionView = [[FilterTypeCollectionView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 90, [UIScreen mainScreen].bounds.size.width, 100)];
+        _filterTypeCollectionView = [[FilterTypeCollectionView alloc] initWithFrame:CGRectMake(0, screenHeight - 90, screenWidth, 100)];
     }
     return _filterTypeCollectionView;
 }
 
 - (BeautyPhotoTypeCollection *)beautyPhotoTypeCollection {
     if (!_beautyPhotoTypeCollection) {
-        _beautyPhotoTypeCollection = [[BeautyPhotoTypeCollection alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 90, [UIScreen mainScreen].bounds.size.width, 100)];
+        _beautyPhotoTypeCollection = [[BeautyPhotoTypeCollection alloc] initWithFrame:CGRectMake(0, screenHeight - 90, screenWidth, 100)];
         _beautyPhotoTypeCollection.hidden = YES;
     }
     return _beautyPhotoTypeCollection;
@@ -564,7 +554,7 @@
 
 - (CutPIDCollectionView *)cutPIDCollectionView {
     if (!_cutPIDCollectionView) {
-        _cutPIDCollectionView = [[CutPIDCollectionView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 140, [UIScreen mainScreen].bounds.size.width, 150)];
+        _cutPIDCollectionView = [[CutPIDCollectionView alloc] initWithFrame:CGRectMake(0, screenHeight - 140, screenWidth, 150)];
         _cutPIDCollectionView.backgroundColor = [UIColor whiteColor];
     }
     return _cutPIDCollectionView;
@@ -573,7 +563,8 @@
 - (CustomSliderView *)customSliderView {
     if (!_customSliderView) {
         _customSliderView = [[NSBundle mainBundle] loadNibNamed:@"CustomSliderView" owner:nil options:nil].lastObject;
-        _customSliderView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 150, [UIScreen mainScreen].bounds.size.width, 150);        _customSliderView.backgroundColor = [UIColor whiteColor];
+        _customSliderView.frame = CGRectMake(0, screenHeight - 150, screenWidth, 150);
+        _customSliderView.backgroundColor = [UIColor whiteColor];
     }
     return _customSliderView;
 }

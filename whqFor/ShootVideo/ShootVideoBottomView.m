@@ -10,7 +10,6 @@
 #import "RecordButton.h"
 #import "VideoProgressView.h"
 
-#define OEScreenWidth ([UIScreen mainScreen].bounds.size.width)
 @interface ShootVideoBottomView()<RecordButtonDelegate>
 
 /** 录制视频按钮*/
@@ -36,7 +35,7 @@
 
 - (void)setupButtons {
     
-    CGFloat baseWidth = OEScreenWidth/8;
+    CGFloat baseWidth = screenWidth/8;
     RecordButton *videoButton = [[RecordButton alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
     videoButton.delegate = self;
     videoButton.center = CGPointMake(baseWidth*4, self.frame.size.height/2);
@@ -130,7 +129,7 @@
 
 -(VideoProgressView *)progressView{
     if( _progressView == nil) {
-        _progressView = [[VideoProgressView alloc] initWithFrame:CGRectMake(0, 0, OEScreenWidth, 3)];
+        _progressView = [[VideoProgressView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 3)];
         _progressView.backgroundColor = [UIColor greenColor];
         
     }
@@ -160,7 +159,7 @@
 - (UIButton *)bottomRightBtn {
     if (!_bottomRightBtn) {
         _bottomRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _bottomRightBtn.frame = CGRectMake(OEScreenWidth - 60, 30, 50, 30);
+        _bottomRightBtn.frame = CGRectMake(screenWidth - 60, 30, 50, 30);
         _bottomRightBtn.backgroundColor = [UIColor redColor];
     }
     return _bottomRightBtn;

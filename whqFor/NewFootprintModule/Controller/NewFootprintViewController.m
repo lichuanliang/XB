@@ -11,16 +11,12 @@
 #define MaxImageCount 9
 #define deleImageWH 25 // 删除按钮的宽高
 #define padding 10
-#define screenWidth [UIScreen mainScreen].bounds.size.width
-#define screenHeight [UIScreen mainScreen].bounds.size.height
 
 #define imageTag 2000
 #define IPCViewHeight 120
 
 #import "NewFootprintViewController.h"
 #import "ImagePickerChooseView.h"
-//#import "AGImagePickerController.h"
-#import "WNImagePicker.h"
 #import "PhotosViewController.h"
 #import "TZImagePickerController.h"
 #import "EditPhotosViewController.h"
@@ -29,7 +25,7 @@
 #import "MBProgressHUD+MJ.h"
 
 
-@interface NewFootprintViewController ()<UITextViewDelegate,UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, WNImagePickerDelegate, TZImagePickerControllerDelegate, OEPopVideoControllerDelegate>
+@interface NewFootprintViewController ()<UITextViewDelegate,UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, TZImagePickerControllerDelegate, OEPopVideoControllerDelegate>
 {
     NSMutableArray *_selectedPhotos;
     NSMutableArray *_selectedAssets;
@@ -301,13 +297,10 @@
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     NSURL *movieURL = [NSURL fileURLWithPath:url];
     
-    if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(url))
-    {
-        [library writeVideoAtPathToSavedPhotosAlbum:movieURL completionBlock:^(NSURL *assetURL, NSError *error)
-         {
-
+    if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(url)) {
+        [library writeVideoAtPathToSavedPhotosAlbum:movieURL completionBlock:^(NSURL *assetURL, NSError *error) {
+            
              if (error) {
-                 
                  [MBProgressHUD showError:@"error"];
              } else {
                  [MBProgressHUD showSuccess:@"success"];
@@ -315,7 +308,6 @@
          }];
     }
 }
-
 
 #pragma customDelegate
 

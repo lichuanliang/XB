@@ -12,4 +12,14 @@
 #import "WhqForConst.h"
 #import <GPUImage/GPUImage.h>
 
+
+
+#define screenWidth ([UIScreen mainScreen].bounds.size.width)
+#define screenHeight ([UIScreen mainScreen].bounds.size.height)
+#define CNP_SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define CNP_IS_IPAD   (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define OEPathToMovie ([NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie4.m4v"])
+
+
+
 #endif /* WhqFor_pch */

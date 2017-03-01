@@ -1,9 +1,9 @@
 //
 //  OEPopVideoController.h
-//  LearnOpenGLESWithGPUImage
+//  whqFor
 //
-//  Created by apple on 16/7/7.
-//  Copyright © 2016年 林伟池. All rights reserved.
+//  Created by Mr.Wang on 2017/3/1.
+//  Copyright © 2017年 Mr.wang. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

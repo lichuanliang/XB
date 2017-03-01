@@ -57,17 +57,6 @@
 		219275B01E6292B6004EF85F /* NewFootprintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 219275AD1E6292B6004EF85F /* NewFootprintViewController.m */; };
 		219275B31E6293D1004EF85F /* ImagePickerChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 219275B21E6293D1004EF85F /* ImagePickerChooseView.m */; };
 		219275B61E62942E004EF85F /* ImagePickerChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 219275B51E62942E004EF85F /* ImagePickerChooseCell.m */; };
-		21F0F0871E62AD5700A4E71D /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F0F0761E62AD5700A4E71D /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
-		21F0F0881E62AD5700A4E71D /* AlbumPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F0F0781E62AD5700A4E71D /* AlbumPhotoCell.m */; };
-		21F0F0891E62AD5700A4E71D /* AlbumPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21F0F0791E62AD5700A4E71D /* AlbumPhotoCell.xib */; };
-		21F0F08A1E62AD5700A4E71D /* CAM1.png in Resources */ = {isa = PBXBuildFile; fileRef = 21F0F07A1E62AD5700A4E71D /* CAM1.png */; };
-		21F0F08B1E62AD5700A4E71D /* ImageEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F0F07C1E62AD5700A4E71D /* ImageEditVC.m */; };
-		21F0F08C1E62AD5700A4E71D /* ImageEditVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21F0F07D1E62AD5700A4E71D /* ImageEditVC.xib */; };
-		21F0F08D1E62AD5700A4E71D /* MutiCollectionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F0F07F1E62AD5700A4E71D /* MutiCollectionLayout.m */; };
-		21F0F08E1E62AD5700A4E71D /* UIImage+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F0F0811E62AD5700A4E71D /* UIImage+Additions.m */; };
-		21F0F08F1E62AD5700A4E71D /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F0F0831E62AD5700A4E71D /* UIView+Additions.m */; };
-		21F0F0901E62AD5700A4E71D /* WNImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F0F0851E62AD5700A4E71D /* WNImagePicker.m */; };
-		21F0F0911E62AD5700A4E71D /* WNImagePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21F0F0861E62AD5700A4E71D /* WNImagePicker.xib */; };
 		21F0F0941E62BB5F00A4E71D /* PhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F0F0931E62BB5F00A4E71D /* PhotosViewController.m */; };
 		21F0F0971E62BFD600A4E71D /* EditPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F0F0961E62BFD600A4E71D /* EditPhotosViewController.m */; };
 		21F0F0A31E62D11A00A4E71D /* CustomPhotosStreamCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F0F0A11E62D11A00A4E71D /* CustomPhotosStreamCell.m */; };
@@ -201,24 +190,6 @@
 		219275B21E6293D1004EF85F /* ImagePickerChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerChooseView.m; sourceTree = "<group>"; };
 		219275B41E62942E004EF85F /* ImagePickerChooseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerChooseCell.h; sourceTree = "<group>"; };
 		219275B51E62942E004EF85F /* ImagePickerChooseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerChooseCell.m; sourceTree = "<group>"; };
-		21F0F0751E62AD5700A4E71D /* ALAssetsLibrary+CustomPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAssetsLibrary+CustomPhotoAlbum.h"; sourceTree = "<group>"; };
-		21F0F0761E62AD5700A4E71D /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
-		21F0F0771E62AD5700A4E71D /* AlbumPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumPhotoCell.h; sourceTree = "<group>"; };
-		21F0F0781E62AD5700A4E71D /* AlbumPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumPhotoCell.m; sourceTree = "<group>"; };
-		21F0F0791E62AD5700A4E71D /* AlbumPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumPhotoCell.xib; sourceTree = "<group>"; };
-		21F0F07A1E62AD5700A4E71D /* CAM1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CAM1.png; sourceTree = "<group>"; };
-		21F0F07B1E62AD5700A4E71D /* ImageEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageEditVC.h; sourceTree = "<group>"; };
-		21F0F07C1E62AD5700A4E71D /* ImageEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageEditVC.m; sourceTree = "<group>"; };
-		21F0F07D1E62AD5700A4E71D /* ImageEditVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageEditVC.xib; sourceTree = "<group>"; };
-		21F0F07E1E62AD5700A4E71D /* MutiCollectionLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutiCollectionLayout.h; sourceTree = "<group>"; };
-		21F0F07F1E62AD5700A4E71D /* MutiCollectionLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutiCollectionLayout.m; sourceTree = "<group>"; };
-		21F0F0801E62AD5700A4E71D /* UIImage+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Additions.h"; sourceTree = "<group>"; };
-		21F0F0811E62AD5700A4E71D /* UIImage+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Additions.m"; sourceTree = "<group>"; };
-		21F0F0821E62AD5700A4E71D /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
-		21F0F0831E62AD5700A4E71D /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
-		21F0F0841E62AD5700A4E71D /* WNImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WNImagePicker.h; sourceTree = "<group>"; };
-		21F0F0851E62AD5700A4E71D /* WNImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WNImagePicker.m; sourceTree = "<group>"; };
-		21F0F0861E62AD5700A4E71D /* WNImagePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WNImagePicker.xib; sourceTree = "<group>"; };
 		21F0F0921E62BB5F00A4E71D /* PhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosViewController.h; sourceTree = "<group>"; };
 		21F0F0931E62BB5F00A4E71D /* PhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosViewController.m; sourceTree = "<group>"; };
 		21F0F0951E62BFD600A4E71D /* EditPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotosViewController.h; sourceTree = "<group>"; };
@@ -484,7 +455,6 @@
 				0337097F1E66215200D7DD35 /* testColor.h */,
 				216B21351E64749C007D3BD3 /* ImageUtil.h */,
 				216B21361E64749C007D3BD3 /* ImageUtil.m */,
-				21F0F0741E62AD5700A4E71D /* WNImapgePicker */,
 				219275B11E6293D1004EF85F /* ImagePickerChooseView.h */,
 				219275B21E6293D1004EF85F /* ImagePickerChooseView.m */,
 				219275B41E62942E004EF85F /* ImagePickerChooseCell.h */,
@@ -519,31 +489,6 @@
 				033B93E51E6531D600F50881 /* CustomSliderView.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		21F0F0741E62AD5700A4E71D /* WNImapgePicker */ = {
-			isa = PBXGroup;
-			children = (
-				21F0F07A1E62AD5700A4E71D /* CAM1.png */,
-				21F0F0751E62AD5700A4E71D /* ALAssetsLibrary+CustomPhotoAlbum.h */,
-				21F0F0761E62AD5700A4E71D /* ALAssetsLibrary+CustomPhotoAlbum.m */,
-				21F0F0771E62AD5700A4E71D /* AlbumPhotoCell.h */,
-				21F0F0781E62AD5700A4E71D /* AlbumPhotoCell.m */,
-				21F0F0791E62AD5700A4E71D /* AlbumPhotoCell.xib */,
-				21F0F07B1E62AD5700A4E71D /* ImageEditVC.h */,
-				21F0F07C1E62AD5700A4E71D /* ImageEditVC.m */,
-				21F0F07D1E62AD5700A4E71D /* ImageEditVC.xib */,
-				21F0F07E1E62AD5700A4E71D /* MutiCollectionLayout.h */,
-				21F0F07F1E62AD5700A4E71D /* MutiCollectionLayout.m */,
-				21F0F0801E62AD5700A4E71D /* UIImage+Additions.h */,
-				21F0F0811E62AD5700A4E71D /* UIImage+Additions.m */,
-				21F0F0821E62AD5700A4E71D /* UIView+Additions.h */,
-				21F0F0831E62AD5700A4E71D /* UIView+Additions.m */,
-				21F0F0841E62AD5700A4E71D /* WNImagePicker.h */,
-				21F0F0851E62AD5700A4E71D /* WNImagePicker.m */,
-				21F0F0861E62AD5700A4E71D /* WNImagePicker.xib */,
-			);
-			path = WNImapgePicker;
 			sourceTree = "<group>";
 		};
 		21F0F0A51E62D3C600A4E71D /* TZImagePickerController */ = {
@@ -735,24 +680,20 @@
 				219275A61E6290FA004EF85F /* 林峰.png in Resources */,
 				0310871A1E677FCE00F4A0B1 /* MBProgressHUD.bundle in Resources */,
 				219275A41E6290FA004EF85F /* reply.png in Resources */,
-				21F0F08A1E62AD5700A4E71D /* CAM1.png in Resources */,
 				2192759F1E6290FA004EF85F /* location.png in Resources */,
 				219275A21E6290FA004EF85F /* picture3.png in Resources */,
 				2192759D1E6290FA004EF85F /* choose.png in Resources */,
 				21F0F0C71E62D3C600A4E71D /* TZImagePickerController.bundle in Resources */,
-				21F0F0891E62AD5700A4E71D /* AlbumPhotoCell.xib in Resources */,
 				219275A81E6290FA004EF85F /* 高圆圆.png in Resources */,
 				033B93E61E6531D600F50881 /* CustomSliderView.xib in Resources */,
 				2192759E1E6290FA004EF85F /* deletePhoto.png in Resources */,
 				219275651E627FD8004EF85F /* LaunchScreen.storyboard in Resources */,
 				0319D5A81E64B4B3004B25B2 /* FilterCustomCollectionCell.xib in Resources */,
-				21F0F0911E62AD5700A4E71D /* WNImagePicker.xib in Resources */,
 				219275A01E6290FA004EF85F /* picture1.png in Resources */,
 				219275621E627FD8004EF85F /* Assets.xcassets in Resources */,
 				219275A31E6290FA004EF85F /* picture4.png in Resources */,
 				21F0F0A41E62D11A00A4E71D /* CustomPhotosStreamCell.xib in Resources */,
 				21F0F0F11E63000200A4E71D /* AGImagePickerController.bundle in Resources */,
-				21F0F08C1E62AD5700A4E71D /* ImageEditVC.xib in Resources */,
 				2192759C1E6290FA004EF85F /* buttonSend@2x.png in Resources */,
 				219275A91E6290FA004EF85F /* 麦粒-app-30.jpg in Resources */,
 				219275A51E6290FA004EF85F /* seen.png in Resources */,
@@ -838,7 +779,6 @@
 			files = (
 				216B214B1E6709FE007D3BD3 /* RecordButton.m in Sources */,
 				21F0F0F41E63000200A4E71D /* AGIPCAlbumsController.m in Sources */,
-				21F0F0881E62AD5700A4E71D /* AlbumPhotoCell.m in Sources */,
 				21F0F0F51E63000200A4E71D /* AGIPCAssetsController.m in Sources */,
 				21F0F0F21E63000200A4E71D /* AGImagePickerController.m in Sources */,
 				21F0F0FA1E63000200A4E71D /* AGPreviewScrollView.m in Sources */,
@@ -847,10 +787,8 @@
 				033B93D91E6513BF00F50881 /* BeautyPhotoTypeCollection.m in Sources */,
 				03BD9CF61E64A20400671B85 /* EditPhotosCustomCell.m in Sources */,
 				219275B01E6292B6004EF85F /* NewFootprintViewController.m in Sources */,
-				21F0F08F1E62AD5700A4E71D /* UIView+Additions.m in Sources */,
 				21F0F0941E62BB5F00A4E71D /* PhotosViewController.m in Sources */,
 				21F0F0971E62BFD600A4E71D /* EditPhotosViewController.m in Sources */,
-				21F0F08E1E62AD5700A4E71D /* UIImage+Additions.m in Sources */,
 				0310871B1E677FCE00F4A0B1 /* MBProgressHUD.m in Sources */,
 				033B93E41E6531C400F50881 /* CustomSliderView.m in Sources */,
 				033709821E66314E00D7DD35 /* WhqForConst.m in Sources */,
@@ -872,8 +810,6 @@
 				031087191E677FCE00F4A0B1 /* MBProgressHUD+MJ.m in Sources */,
 				21F0F0FB1E63000200A4E71D /* ALAsset+AGIPC.m in Sources */,
 				21F0F0C41E62D3C600A4E71D /* TZGifPhotoPreviewController.m in Sources */,
-				21F0F0901E62AD5700A4E71D /* WNImagePicker.m in Sources */,
-				21F0F08D1E62AD5700A4E71D /* MutiCollectionLayout.m in Sources */,
 				21F0F0F31E63000200A4E71D /* AGImagePreviewController.m in Sources */,
 				216B214D1E6709FE007D3BD3 /* VideoProgressView.m in Sources */,
 				21F0F0CE1E62D3C600A4E71D /* UIView+Layout.m in Sources */,
@@ -881,7 +817,6 @@
 				21F0F0F91E63000200A4E71D /* AGIPCToolbarItem.m in Sources */,
 				21F0F0C91E62D3C600A4E71D /* TZPhotoPickerController.m in Sources */,
 				21F0F0F71E63000200A4E71D /* AGIPCGridItem.m in Sources */,
-				21F0F08B1E62AD5700A4E71D /* ImageEditVC.m in Sources */,
 				219275B31E6293D1004EF85F /* ImagePickerChooseView.m in Sources */,
 				21F0F0D31E62D64600A4E71D /* LxGridViewFlowLayout.m in Sources */,
 				033B93DD1E6525F500F50881 /* CutPhotoPIDCustomCell.m in Sources */,
@@ -890,7 +825,6 @@
 				21F0F0C11E62D3C600A4E71D /* NSBundle+TZImagePicker.m in Sources */,
 				033B93D51E65123700F50881 /* BeautyPhotoCustomCell.m in Sources */,
 				21F0F0F81E63000200A4E71D /* AGIPCPreviewController.m in Sources */,
-				21F0F0871E62AD5700A4E71D /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				21F0F0A31E62D11A00A4E71D /* CustomPhotosStreamCell.m in Sources */,
 				216B214C1E6709FE007D3BD3 /* ShootVideoBottomView.m in Sources */,
 				0319D5AB1E64B715004B25B2 /* FilterTypeCollectionView.m in Sources */,

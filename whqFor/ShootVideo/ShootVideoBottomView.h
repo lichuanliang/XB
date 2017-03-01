@@ -26,5 +26,4 @@
 - (void)progressResume;
 - (void)progressStart;
 
-
 @end

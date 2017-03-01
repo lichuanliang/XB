@@ -1,21 +1,14 @@
 //
 //  OEPopVideoController.m
-//  LearnOpenGLESWithGPUImage
+//  whqFor
 //
-//  Created by apple on 16/7/7.
-//  Copyright © 2016年 林伟池. All rights reserved.
+//  Created by Mr.Wang on 2017/3/1.
+//  Copyright © 2017年 Mr.wang. All rights reserved.
 //
 
 #import "OEPopVideoController.h"
-#import "GPUImage.h"
 #import <objc/runtime.h>
 #import "ShootVideoBottomView.h"
-
-#define OEScreenWidth ([UIScreen mainScreen].bounds.size.width)
-#define OEScreenHeight ([UIScreen mainScreen].bounds.size.height)
-#define CNP_SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
-#define CNP_IS_IPAD   (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-#define OEPathToMovie ([NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie4.m4v"])
 
 
 @interface OEPopVideoController()<ShootVideoBottomViewDelegate,GPUImageVideoCameraDelegate>
@@ -65,10 +58,10 @@
 }
 #pragma mark - setup
 - (void)setupView {
-    self.popupView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, OEScreenWidth, OEScreenHeight)];
+    self.popupView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
     self.popupView.clipsToBounds = YES;
     
-    self.maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, OEScreenWidth, OEScreenHeight)];
+    self.maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
     self.maskView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
     [self.maskView addSubview:self.popupView];
     
@@ -80,7 +73,7 @@
     _videoCamera.outputImageOrientation = [UIApplication sharedApplication].statusBarOrientation;
     
     _filter = [[GPUImageSaturationFilter alloc] init];
-    CGRect frame = CGRectMake(0, 70, OEScreenWidth, OEScreenHeight - 150);
+    CGRect frame = CGRectMake(0, 70, screenWidth, screenHeight - 150);
     _filterView = [[GPUImageView alloc] initWithFrame:frame];
     _filterView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
     [self.popupView addSubview: _filterView];
@@ -115,7 +108,7 @@
 }
 - (void)setupTabbar {
     
-    CGRect rect = CGRectMake(0, OEScreenHeight-70, OEScreenWidth, 70);
+    CGRect rect = CGRectMake(0, screenHeight-70, screenWidth, 70);
     ShootVideoBottomView *tabbar = [[ShootVideoBottomView alloc] initWithFrame:rect];
     tabbar.delegate = self;
     tabbar.backgroundColor = [UIColor blackColor];
@@ -226,7 +219,7 @@
     if ([self.delegate respondsToSelector:@selector(popVideoControllerDidSave:)]) {
         NSURL *movieURL = [NSURL fileURLWithPath:OEPathToMovie];
         unlink([OEPathToMovie UTF8String]); // 如果已经存在文件，AVAssetWriter会有异常，删除旧文件
-        _movieWriter = [[GPUImageMovieWriter alloc] initWithMovieURL:movieURL size:CGSizeMake(OEScreenWidth, OEScreenWidth)];
+        _movieWriter = [[GPUImageMovieWriter alloc] initWithMovieURL:movieURL size:CGSizeMake(screenWidth, screenHeight)];
         _movieWriter.encodingLiveVideo = YES;
         [_filter addTarget:_movieWriter];
         _videoCamera.audioEncodingTarget = _movieWriter;
@@ -360,7 +353,7 @@ CGFloat CNP_UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orie
 
 - (UIView *)topView {
     if (!_topView) {
-        _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, OEScreenWidth, 80)];
+        _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 80)];
         _topView.backgroundColor = [UIColor whiteColor];
     }
     return _topView;
@@ -381,7 +374,7 @@ CGFloat CNP_UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orie
 - (UIButton *)switchCameraBtn {
     if (!_switchCameraBtn) {
         _switchCameraBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _switchCameraBtn.frame = CGRectMake(OEScreenWidth - 50, 20, 50, 30);
+        _switchCameraBtn.frame = CGRectMake(screenWidth - 50, 20, 50, 30);
         [_switchCameraBtn setTitle:@"切换" forState:UIControlStateNormal];
         _switchCameraBtn.backgroundColor = [UIColor redColor];
         [_switchCameraBtn addTarget:self action:@selector(switchCameraBtnOnClick) forControlEvents:UIControlEventTouchUpInside];

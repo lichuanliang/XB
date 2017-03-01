@@ -8,8 +8,6 @@
 
 #import "VideoProgressView.h"
 
-#define OEScreenWidth ([UIScreen mainScreen].bounds.size.width)
-
 @implementation VideoProgressView
 
 - (void)startCompletion:(void (^ __nullable)(BOOL finished))completion {
@@ -19,14 +17,13 @@
         self.bounds = CGRectMake(0, 0, 0, self.frame.size.height);
     } completion:^(BOOL finished) {
         completion(finished);
-        self.bounds = CGRectMake(0, 0, OEScreenWidth, self.frame.size.height);
+        self.bounds = CGRectMake(0, 0, screenWidth, self.frame.size.height);
         
     }];
     
 }
 - (void)resume {
-    self.bounds = CGRectMake(0, 0, OEScreenWidth, self.frame.size.height);
+    self.bounds = CGRectMake(0, 0, screenWidth, self.frame.size.height);
 }
-
 
 @end
