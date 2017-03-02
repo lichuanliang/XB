@@ -23,10 +23,6 @@
     [self.topView addSubview:self.cancelBtn];
     [self.topView addSubview:self.continueBtn];
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
-    
-    // You can get the photos by block, the same as by delegate.
-    // 你可以通过block或者代理，来得到用户选择的照片.
-
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
 

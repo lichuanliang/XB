@@ -10,10 +10,11 @@
 
 @interface VideoProgressView : UIView
 
+/** 时间*/
 @property (nonatomic, assign) NSTimeInterval duration;
 
 - (void)startCompletion:(void (^ __nullable)(BOOL finished))completion;
-
+//重置
 - (void)resume;
 
 

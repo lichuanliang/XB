@@ -13,16 +13,27 @@
 
 @interface OEPopVideoController()<ShootVideoBottomViewDelegate,GPUImageVideoCameraDelegate>
 
+/** 视频录像*/
 @property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
+/** 输出流*/
 @property (nonatomic, strong) GPUImageOutput<GPUImageInput> *filter;
+/** 视频写入*/
 @property (nonatomic, strong) GPUImageMovieWriter *movieWriter;
+/** 流视图*/
 @property (nonatomic, strong) GPUImageView *filterView;
+/** timer*/
 @property (nonatomic, strong) NSTimer *timer;
+/** 弹出的view*/
 @property (nonatomic, strong) UIView *popupView;
+/** 底部view*/
 @property (nonatomic, strong) UIView *maskView;
+/** windows*/
 @property (nonatomic, strong) UIWindow *applicationWindow;
+/** 录制视频界面底部的view*/
 @property (nonatomic, strong) ShootVideoBottomView *tabbar;
+/** 当前时间*/
 @property (nonatomic, assign) NSTimeInterval nowTime;
+/** 动画是否消失*/
 @property (nonatomic, assign) BOOL dismissAnimated;
 /** topView(包括取消、切换摄像头等)*/
 @property  (nonatomic, strong) UIView *topView;
@@ -116,7 +127,6 @@
     self.tabbar = tabbar;
     
 }
-
 
 #pragma mark - tabbar Button
 - (void)dismissBtnClick {

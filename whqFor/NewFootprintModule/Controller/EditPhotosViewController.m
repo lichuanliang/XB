@@ -66,6 +66,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.assetIndex = 0;
+    self.titleLabel.text = [NSString stringWithFormat:@"编辑图片(1/%lu)", (unsigned long)self.assets.count];
     self.filterLibraryBtn.selected = YES;
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
@@ -200,22 +201,31 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if ((scrollView.contentOffset.x) / screenWidth == 0) {
         self.assetIndex = 0;
+        self.titleLabel.text = [NSString stringWithFormat:@"编辑图片(1/%lu)", (unsigned long)self.assets.count];
     }else if ((scrollView.contentOffset.x) / screenWidth == 1) {
         self.assetIndex = 1;
+        self.titleLabel.text = [NSString stringWithFormat:@"编辑图片(2/%lu)", (unsigned long)self.assets.count];
     }else if ((scrollView.contentOffset.x) / screenWidth == 2) {
         self.assetIndex = 2;
+        self.titleLabel.text = [NSString stringWithFormat:@"编辑图片(3/%lu)", (unsigned long)self.assets.count];
     }else if ((scrollView.contentOffset.x) / screenWidth == 3) {
         self.assetIndex = 3;
+        self.titleLabel.text = [NSString stringWithFormat:@"编辑图片(4/%lu)", (unsigned long)self.assets.count];
     }else if ((scrollView.contentOffset.x) / screenWidth == 4) {
         self.assetIndex = 4;
+        self.titleLabel.text = [NSString stringWithFormat:@"编辑图片(5/%lu)", (unsigned long)self.assets.count];
     }else if ((scrollView.contentOffset.x) / screenWidth == 5) {
         self.assetIndex = 5;
+        self.titleLabel.text = [NSString stringWithFormat:@"编辑图片(6/%lu)", (unsigned long)self.assets.count];
     }else if ((scrollView.contentOffset.x) / screenWidth == 6) {
         self.assetIndex = 6;
+        self.titleLabel.text = [NSString stringWithFormat:@"编辑图片(7/%lu)", (unsigned long)self.assets.count];
     }else if ((scrollView.contentOffset.x) / screenWidth == 7) {
         self.assetIndex = 7;
+        self.titleLabel.text = [NSString stringWithFormat:@"编辑图片(8/%lu)", (unsigned long)self.assets.count];
     }else if ((scrollView.contentOffset.x) / screenWidth == 8) {
         self.assetIndex = 8;
+        self.titleLabel.text = [NSString stringWithFormat:@"编辑图片(9/%lu)", (unsigned long)self.assets.count];
     }
 }
 
@@ -453,6 +463,7 @@
     }
 }
 
+#pragma mark - systemDelegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.assets.count;
 }
@@ -500,7 +511,7 @@
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/2 - 50, 15, 100, 50)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/2 - 50, 15, 130, 50)];
         _titleLabel.textColor = [UIColor blackColor];
         _titleLabel.font = [UIFont systemFontOfSize:18];
         _titleLabel.text = @"编辑图片";

@@ -12,18 +12,26 @@
 
 @protocol ShootVideoBottomViewDelegate <NSObject>
 
+//已经开始录制
 - (void)tabbarDidRecord;
+//已经录制完成
 - (void)tabbarDidRecordComplete;
+//已经关闭录制
 - (void)tabbarDidCancelRecord;
 
 @end
 
 @interface ShootVideoBottomView : UIView
 
+/** 进度条view*/
 @property (nonatomic,strong) VideoProgressView *progressView;
+/** 进度条的时间*/
 @property (nonatomic,assign) NSTimeInterval progressDuration;
+/** delegate*/
 @property (nonatomic,weak)id<ShootVideoBottomViewDelegate> delegate;
+//重置进度条
 - (void)progressResume;
+//进度开始
 - (void)progressStart;
 
 @end

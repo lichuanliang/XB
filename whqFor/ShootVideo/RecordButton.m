@@ -10,7 +10,9 @@
 
 @interface RecordButton()
 
+/** 路径*/
 @property (nonatomic,strong) UIBezierPath *path;
+/** layer*/
 @property (nonatomic,strong) CAShapeLayer *shapeLayer;
 
 @end
@@ -27,6 +29,7 @@
     }
     return self;
 }
+
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
     [self startAnimation:selected];
@@ -40,6 +43,7 @@
     layer.borderWidth = 2;
     layer.borderColor = [[UIColor greenColor] CGColor];
 }
+
 - (void)startAnimation:(BOOL)selected {
     if (selected) {
         self.shapeLayer.cornerRadius = 0;
@@ -51,12 +55,14 @@
         [self setupLayer:self.shapeLayer];
     }
 }
+
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     self.selected = YES;
     if ([self.delegate respondsToSelector:@selector(recordButtonDidTouchDown)]) {
         [self.delegate recordButtonDidTouchDown];
     }
 }
+
 -(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self.superview];
@@ -65,6 +71,7 @@
     }
     
 }
+
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event  {
     self.selected = NO;
     UITouch *touch = [touches anyObject];
@@ -73,6 +80,5 @@
         [self.delegate recordButtonDidEnded:point];
     }
 }
-
 
 @end

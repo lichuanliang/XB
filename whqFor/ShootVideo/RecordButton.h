@@ -10,16 +10,20 @@
 
 @protocol RecordButtonDelegate <NSObject>
 
+//did touch delegateAction
 -(void)recordButtonDidTouchDown;
+//did move delegateAction
 -(void)recordButtonDidMove:(CGPoint)point;
+//did ended delegateAction
 -(void)recordButtonDidEnded:(CGPoint)point;
 
 @end
 
 @interface RecordButton : UIButton
 
-- (void)startAnimation:(BOOL)top;
-
+/** delegate*/
 @property (nonatomic,weak) id<RecordButtonDelegate> delegate;
+//开始动画
+- (void)startAnimation:(BOOL)top;
 
 @end

@@ -6,15 +6,6 @@
 //  Copyright © 2017年 Mr.wang. All rights reserved.
 //
 
-#define textViewHeight 100
-#define pictureHW (screenWidth - 5*padding)/4
-#define MaxImageCount 9
-#define deleImageWH 25 // 删除按钮的宽高
-#define padding 10
-
-#define imageTag 2000
-#define IPCViewHeight 120
-
 #import "NewFootprintViewController.h"
 #import "ImagePickerChooseView.h"
 #import "PhotosViewController.h"
