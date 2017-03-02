@@ -8,14 +8,9 @@
 
 #import <UIKit/UIKit.h>
 @class OEProgressView;
-typedef NS_ENUM(NSInteger, OEButtonType) {
-    OEConvert,
-    OEDismiss
-};
 
 @protocol OETabbarDelegate <NSObject>
 
-- (void)tabbarButtonDidClick:(UIButton *)sender;
 - (void)tabbarDidRecord;
 - (void)tabbarDidRecordComplete;
 - (void)tabbarDidCancelRecord;

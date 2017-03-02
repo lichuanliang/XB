@@ -9,11 +9,19 @@
 #import "OETabbar.h"
 #import "RecordButton.h"
 #import "OEProgressView.h"
+
 #define OEScreenWidth ([UIScreen mainScreen].bounds.size.width)
 @interface OETabbar()<RecordButtonDelegate>
 
+/** 录制视频按钮*/
 @property (nonatomic,weak) RecordButton *videoButton;
+/** 取消的提示*/
 @property (nonatomic,strong) UILabel *upCancelAlertLabel;
+/** 底部左边的btn*/
+@property (nonatomic, strong) UIButton *bottomLeftBtn;
+/** 底部右边的btn*/
+@property (nonatomic, strong) UIButton *bottomRightBtn;
+
 @end
 
 @implementation OETabbar
@@ -26,30 +34,6 @@
     return self;
 }
 
-#pragma mark - Getter
-
--(OEProgressView *)progressView{
-    if( _progressView == nil) {
-        _progressView = [[OEProgressView alloc] initWithFrame:CGRectMake(0, 0, OEScreenWidth, 3)];
-        _progressView.backgroundColor = [UIColor greenColor];
-        
-    }
-    return _progressView;
-    
-}
--(UILabel *)upCancelAlertLabel{
-    if (_upCancelAlertLabel == nil) {
-        UILabel *upCancelAlertLabel = [[UILabel alloc] init];
-        upCancelAlertLabel.frame = CGRectMake(0, 0, 60,20);
-        upCancelAlertLabel.textAlignment = NSTextAlignmentCenter;
-        upCancelAlertLabel.font = [UIFont systemFontOfSize:12];
-        _upCancelAlertLabel = upCancelAlertLabel;
-    }
-    return _upCancelAlertLabel;
-}
-
-
-
 - (void)setupButtons {
     
     CGFloat baseWidth = OEScreenWidth/8;
@@ -57,26 +41,10 @@
     videoButton.delegate = self;
     videoButton.center = CGPointMake(baseWidth*4, self.frame.size.height/2);
     self.videoButton = videoButton;
-    
-    UIButton *convertCamreBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
-    convertCamreBtn.tag = OEConvert;
-    convertCamreBtn.contentMode = UIViewContentModeCenter;
-    [convertCamreBtn setBackgroundImage:[UIImage imageNamed:@"convert"] forState:UIControlStateNormal];
-    [convertCamreBtn setBackgroundImage:[UIImage imageNamed:@"convert"] forState:UIControlStateHighlighted];
-    convertCamreBtn.center = CGPointMake(baseWidth, 35);
-    [convertCamreBtn addTarget:self action:@selector(selectedButton:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *dismissBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
-    dismissBtn.tag = OEDismiss;
-    convertCamreBtn.contentMode = UIViewContentModeScaleAspectFit;
-    dismissBtn.center = CGPointMake(baseWidth*7, 35);
-    [dismissBtn addTarget:self action:@selector(selectedButton:) forControlEvents:UIControlEventTouchUpInside];
-    [dismissBtn setBackgroundImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];
-    [dismissBtn setBackgroundImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateHighlighted];
-    
-    [self addSubview:dismissBtn];
-    [self addSubview:convertCamreBtn];
+
     [self addSubview:videoButton];
+    [self addSubview:self.bottomLeftBtn];
+    [self addSubview:self.bottomRightBtn];
 }
 
 #pragma mark - self Delegate
@@ -118,11 +86,6 @@
     }
     
 }
--(void)selectedButton:(RecordButton *)sender {
-    if ([self.delegate respondsToSelector:@selector(tabbarButtonDidClick:)]) {
-        [self.delegate tabbarButtonDidClick:sender];
-    }
-}
 
 #pragma mark - 上移取消提示Label
 
@@ -161,6 +124,46 @@
             [self.videoButton setSelected:NO];
         }
     }];
+}
+
+#pragma mark - lazyLoading
+
+-(OEProgressView *)progressView{
+    if( _progressView == nil) {
+        _progressView = [[OEProgressView alloc] initWithFrame:CGRectMake(0, 0, OEScreenWidth, 3)];
+        _progressView.backgroundColor = [UIColor greenColor];
+        
+    }
+    return _progressView;
+    
+}
+-(UILabel *)upCancelAlertLabel{
+    if (_upCancelAlertLabel == nil) {
+        UILabel *upCancelAlertLabel = [[UILabel alloc] init];
+        upCancelAlertLabel.frame = CGRectMake(0, 0, 60,20);
+        upCancelAlertLabel.textAlignment = NSTextAlignmentCenter;
+        upCancelAlertLabel.font = [UIFont systemFontOfSize:12];
+        _upCancelAlertLabel = upCancelAlertLabel;
+    }
+    return _upCancelAlertLabel;
+}
+
+- (UIButton *)bottomLeftBtn {
+    if (!_bottomLeftBtn) {
+        _bottomLeftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _bottomLeftBtn.frame = CGRectMake(10, 30, 50, 30);
+        _bottomLeftBtn.backgroundColor = [UIColor redColor];
+    }
+    return _bottomLeftBtn;
+}
+
+- (UIButton *)bottomRightBtn {
+    if (!_bottomRightBtn) {
+        _bottomRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _bottomRightBtn.frame = CGRectMake(OEScreenWidth - 60, 30, 50, 30);
+        _bottomRightBtn.backgroundColor = [UIColor redColor];
+    }
+    return _bottomRightBtn;
 }
 
 - (void)progressResume {

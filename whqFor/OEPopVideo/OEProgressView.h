@@ -10,7 +10,7 @@
 
 @interface OEProgressView : UIView
 
-@property (nonatomic,assign) NSTimeInterval duration;
+@property (nonatomic, assign) NSTimeInterval duration;
 
 - (void)startCompletion:(void (^ __nullable)(BOOL finished))completion;
 

@@ -9,14 +9,12 @@
 #import "OEPopVideoController.h"
 #import "GPUImage.h"
 
-
-
 #import <objc/runtime.h>
 
 #import "OETabbar.h"
 
 #define OEScreenWidth ([UIScreen mainScreen].bounds.size.width)
-#define OEScreenHeight ([UIScreen mainScreen].bounds.size.width)
+#define OEScreenHeight ([UIScreen mainScreen].bounds.size.height)
 #define CNP_SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define CNP_IS_IPAD   (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define OEPathToMovie ([NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie4.m4v"])
@@ -24,20 +22,24 @@
 
 @interface OEPopVideoController()<OETabbarDelegate,GPUImageVideoCameraDelegate>
 
-@property (nonatomic , strong) GPUImageVideoCamera *videoCamera;
-@property (nonatomic , strong) GPUImageOutput<GPUImageInput> *filter;
-@property (nonatomic , strong) GPUImageMovieWriter *movieWriter;
-@property (nonatomic , strong) GPUImageView *filterView;
-
-@property (nonatomic,strong) NSTimer *timer;
+@property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
+@property (nonatomic, strong) GPUImageOutput<GPUImageInput> *filter;
+@property (nonatomic, strong) GPUImageMovieWriter *movieWriter;
+@property (nonatomic, strong) GPUImageView *filterView;
+@property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) UIView *popupView;
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) UIWindow *applicationWindow;
-@property (nonatomic, strong) UITapGestureRecognizer *backgroundTapRecognizer;
-@property (nonatomic,strong) OETabbar *tabbar;
-@property (nonatomic,assign) NSTimeInterval nowTime;
+@property (nonatomic, strong) OETabbar *tabbar;
+@property (nonatomic, assign) NSTimeInterval nowTime;
+@property (nonatomic, assign) BOOL dismissAnimated;
+/** topView(包括取消、切换摄像头等)*/
+@property  (nonatomic, strong) UIView *topView;
+/** 关闭录制小视频*/
+@property (nonatomic, strong) UIButton *cancelBtn;
+/** 切换摄像头btn*/
+@property (nonatomic, strong) UIButton *switchCameraBtn;
 
-@property (nonatomic) BOOL dismissAnimated;
 @end
 
 @implementation OEPopVideoController
@@ -65,15 +67,11 @@
 }
 #pragma mark - setup
 - (void)setupView {
-    self.popupView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.popupView.backgroundColor = [UIColor whiteColor];
+    self.popupView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, OEScreenWidth, OEScreenHeight)];
     self.popupView.clipsToBounds = YES;
     
-    self.maskView = [[UIView alloc] initWithFrame:self.applicationWindow.bounds];
+    self.maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, OEScreenWidth, OEScreenHeight)];
     self.maskView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
-    self.backgroundTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleBackgroundTapGesture:)];
-    //    self.backgroundTapRecognizer.delegate = self;
-    [self.maskView addGestureRecognizer:self.backgroundTapRecognizer];
     [self.maskView addSubview:self.popupView];
     
 }
@@ -84,7 +82,7 @@
     _videoCamera.outputImageOrientation = [UIApplication sharedApplication].statusBarOrientation;
     
     _filter = [[GPUImageSaturationFilter alloc] init];
-    CGRect frame = CGRectMake(0, 70, OEScreenWidth, OEScreenWidth);
+    CGRect frame = CGRectMake(0, 70, OEScreenWidth, OEScreenHeight - 150);
     _filterView = [[GPUImageView alloc] initWithFrame:frame];
     _filterView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
     [self.popupView addSubview: _filterView];
@@ -96,6 +94,14 @@
     [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidChangeStatusBarOrientationNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         _videoCamera.outputImageOrientation = [UIApplication sharedApplication].statusBarOrientation;
     }];
+    
+    
+    [self.maskView addSubview:self.topView];
+    [self.topView addSubview:self.cancelBtn];
+    [self.topView addSubview:self.switchCameraBtn];
+    
+
+    
 }
 
 - (void)setupPopupAnimation {
@@ -126,23 +132,18 @@
     [self dismissPopupControllerAnimated:YES];
 }
 
-- (void)convertCamre {
+//关闭录制小视频
+- (void)cancelBtnOnClick {
+    [self dismissPopupControllerAnimated:YES];
+}
+
+//切换摄像头
+- (void)switchCameraBtnOnClick {
     [_videoCamera rotateCamera];
 }
 
 #pragma mark - OETabBarDelegate
-- (void)tabbarButtonDidClick:(UIButton *)sender {
-    switch (sender.tag) {
-        case OEConvert:
-            [self convertCamre];
-            break;
-        case OEDismiss:
-            [self dismissBtnClick];
-            break;
-        default:
-            break;
-    }
-}
+
 -(void)tabbarDidCancelRecord {
     
     [self cancelCamre];
@@ -322,12 +323,10 @@ CGFloat CNP_UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orie
     _filter = nil;
     _movieWriter = nil;
     _filterView = nil;
-    
     _timer = nil;
     _popupView = nil;
     _maskView = nil;
     _applicationWindow = nil;
-    _backgroundTapRecognizer = nil;
     _tabbar = nil;
 }
 
@@ -359,7 +358,39 @@ CGFloat CNP_UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orie
     return result;
 }
 
+#pragma mark - lazyLoading
 
+- (UIView *)topView {
+    if (!_topView) {
+        _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, OEScreenWidth, 80)];
+        _topView.backgroundColor = [UIColor whiteColor];
+    }
+    return _topView;
+}
+
+- (UIButton *)cancelBtn {
+    if (!_cancelBtn) {
+        _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _cancelBtn.frame = CGRectMake(10, 20, 50, 30);
+        _cancelBtn.backgroundColor = [UIColor redColor];
+        _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_cancelBtn setTitle:@"关闭" forState:UIControlStateNormal];
+        [_cancelBtn addTarget:self action:@selector(cancelBtnOnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _cancelBtn;
+}
+
+- (UIButton *)switchCameraBtn {
+    if (!_switchCameraBtn) {
+        _switchCameraBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _switchCameraBtn.frame = CGRectMake(OEScreenWidth - 50, 20, 50, 30);
+        [_switchCameraBtn setTitle:@"切换" forState:UIControlStateNormal];
+        _switchCameraBtn.backgroundColor = [UIColor redColor];
+        [_switchCameraBtn addTarget:self action:@selector(switchCameraBtnOnClick) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    return _switchCameraBtn;
+}
 
 - (void)dealloc {
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
@@ -367,9 +398,6 @@ CGFloat CNP_UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orie
     [[NSNotificationCenter defaultCenter]removeObserver:self name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 }
 
-- (void)handleBackgroundTapGesture:(id)sender {
-    [self dismissPopupControllerAnimated:self.dismissAnimated];
-}
 #pragma mark - GPUImageVideoCamreaDelegate
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer {
         [self.delegate popVideoControllerWillOutputSampleBuffer:sampleBuffer];

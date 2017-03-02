@@ -206,7 +206,7 @@
     //去拍小视频
     IPCView.smallVideoBlock = ^(){
         OEPopVideoController *videoController = [[OEPopVideoController alloc] init];
-        videoController.videoMaxTime = 4;
+        videoController.videoMaxTime = smallVideoTime;
         videoController.delegate = self;
         [videoController presentPopupControllerAnimated:YES];
         
