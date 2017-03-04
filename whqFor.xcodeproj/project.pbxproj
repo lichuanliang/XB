@@ -26,6 +26,8 @@
 		03BD9CF71E64A20400671B85 /* EditPhotosCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03BD9CF51E64A20400671B85 /* EditPhotosCustomCell.xib */; };
 		03BD9CFA1E64A44E00671B85 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BD9CF91E64A44E00671B85 /* AssetsLibrary.framework */; };
 		03BD9CFC1E64A7D200671B85 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BD9CFB1E64A7D200671B85 /* Photos.framework */; };
+		2134B8AA1E6A87EE00A077BF /* ShowImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2134B8A91E6A87EE00A077BF /* ShowImageView.m */; };
+		2134B8AD1E6A881000A077BF /* ShowImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2134B8AC1E6A881000A077BF /* ShowImageViewController.m */; };
 		216B21331E64739F007D3BD3 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 216B21321E64739F007D3BD3 /* test.png */; };
 		216B21371E64749C007D3BD3 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 216B21361E64749C007D3BD3 /* ImageUtil.m */; };
 		216B214A1E6709FE007D3BD3 /* OEPopVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 216B21431E6709FE007D3BD3 /* OEPopVideoController.m */; };
@@ -143,6 +145,10 @@
 		03BD9CF51E64A20400671B85 /* EditPhotosCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPhotosCustomCell.xib; sourceTree = "<group>"; };
 		03BD9CF91E64A44E00671B85 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		03BD9CFB1E64A7D200671B85 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		2134B8A81E6A87EE00A077BF /* ShowImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowImageView.h; sourceTree = "<group>"; };
+		2134B8A91E6A87EE00A077BF /* ShowImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowImageView.m; sourceTree = "<group>"; };
+		2134B8AB1E6A881000A077BF /* ShowImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowImageViewController.h; sourceTree = "<group>"; };
+		2134B8AC1E6A881000A077BF /* ShowImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowImageViewController.m; sourceTree = "<group>"; };
 		216B21321E64739F007D3BD3 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		216B21341E64749C007D3BD3 /* ColorMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMatrix.h; sourceTree = "<group>"; };
 		216B21351E64749C007D3BD3 /* ImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtil.h; sourceTree = "<group>"; };
@@ -433,6 +439,8 @@
 			children = (
 				219275AC1E6292B6004EF85F /* NewFootprintViewController.h */,
 				219275AD1E6292B6004EF85F /* NewFootprintViewController.m */,
+				2134B8AB1E6A881000A077BF /* ShowImageViewController.h */,
+				2134B8AC1E6A881000A077BF /* ShowImageViewController.m */,
 				21F0F0921E62BB5F00A4E71D /* PhotosViewController.h */,
 				21F0F0931E62BB5F00A4E71D /* PhotosViewController.m */,
 				21F0F0951E62BFD600A4E71D /* EditPhotosViewController.h */,
@@ -487,6 +495,8 @@
 				033B93E21E6531C400F50881 /* CustomSliderView.h */,
 				033B93E31E6531C400F50881 /* CustomSliderView.m */,
 				033B93E51E6531D600F50881 /* CustomSliderView.xib */,
+				2134B8A81E6A87EE00A077BF /* ShowImageView.h */,
+				2134B8A91E6A87EE00A077BF /* ShowImageView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -786,6 +796,7 @@
 				2192755A1E627FD8004EF85F /* AppDelegate.m in Sources */,
 				033B93D91E6513BF00F50881 /* BeautyPhotoTypeCollection.m in Sources */,
 				03BD9CF61E64A20400671B85 /* EditPhotosCustomCell.m in Sources */,
+				2134B8AA1E6A87EE00A077BF /* ShowImageView.m in Sources */,
 				219275B01E6292B6004EF85F /* NewFootprintViewController.m in Sources */,
 				21F0F0941E62BB5F00A4E71D /* PhotosViewController.m in Sources */,
 				21F0F0971E62BFD600A4E71D /* EditPhotosViewController.m in Sources */,
@@ -820,6 +831,7 @@
 				219275B31E6293D1004EF85F /* ImagePickerChooseView.m in Sources */,
 				21F0F0D31E62D64600A4E71D /* LxGridViewFlowLayout.m in Sources */,
 				033B93DD1E6525F500F50881 /* CutPhotoPIDCustomCell.m in Sources */,
+				2134B8AD1E6A881000A077BF /* ShowImageViewController.m in Sources */,
 				21F0F0C61E62D3C600A4E71D /* TZImageManager.m in Sources */,
 				21F0F0CB1E62D3C600A4E71D /* TZPhotoPreviewController.m in Sources */,
 				21F0F0C11E62D3C600A4E71D /* NSBundle+TZImagePicker.m in Sources */,

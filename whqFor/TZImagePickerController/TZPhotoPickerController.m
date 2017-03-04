@@ -72,8 +72,6 @@ static CGSize AssetGridThumbnailSize;
     _shouldScrollToBottom = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     //self.navigationItem.title = _model.name;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"继续" style:UIBarButtonItemStylePlain target:tzImagePickerVc action:@selector(continueBtnOnClick)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:tzImagePickerVc action:@selector(cancelButtonClick)];
     _showTakePhotoBtn = (([[TZImageManager manager] isCameraRollAlbum:_model.name]) && tzImagePickerVc.allowTakePicture);
     if (!tzImagePickerVc.sortAscendingByModificationDate && _isFirstAppear && iOS8Later) {
         [[TZImageManager manager] getCameraRollAlbum:tzImagePickerVc.allowPickingVideo allowPickingImage:tzImagePickerVc.allowPickingImage completion:^(TZAlbumModel *model) {
@@ -182,6 +180,15 @@ static CGSize AssetGridThumbnailSize;
     TZImagePickerController *tzImagePickerVc = (TZImagePickerController *)self.navigationController;
     if (!tzImagePickerVc.showSelectBtn) return;
     
+    if (tzImagePickerVc.selectedModels.count > 0) {
+        self.continueBtn.userInteractionEnabled = YES;
+        [self.continueBtn setTitle:[NSString stringWithFormat:@"继续(%lu)", (unsigned long)tzImagePickerVc.selectedModels.count] forState:UIControlStateNormal];
+    }else {
+        self.continueBtn.userInteractionEnabled = NO;
+        [self.continueBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    }
+    
+    
     CGFloat yOffset = 0;
     if (self.navigationController.navigationBar.isTranslucent) {
         yOffset = self.view.tz_height - 50;
@@ -237,7 +244,6 @@ static CGSize AssetGridThumbnailSize;
     _doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _doneButton.frame = CGRectMake(self.view.tz_width - 44 - 12, 3, 44, 44);
     _doneButton.titleLabel.font = [UIFont systemFontOfSize:16];
-    [_doneButton addTarget:self action:@selector(doneButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [_doneButton setTitle:tzImagePickerVc.doneBtnTitleStr forState:UIControlStateNormal];
     [_doneButton setTitle:tzImagePickerVc.doneBtnTitleStr forState:UIControlStateDisabled];
     [_doneButton setTitleColor:tzImagePickerVc.oKButtonTitleColorNormal forState:UIControlStateNormal];
@@ -277,6 +283,13 @@ static CGSize AssetGridThumbnailSize;
 //中间相册列表按钮的触发事件
 - (void)photoListBtnOnClick {
     NSLog(@"点击弹出相册列表的view");
+    [[TZImageManager manager] getCameraRollAlbum:YES allowPickingImage:YES completion:^(TZAlbumModel *model) {
+        NSLog(@"====所有图片====");
+    }];
+    
+    [[TZImageManager manager] getAllAlbums:YES allowPickingImage:YES completion:^(NSArray<TZAlbumModel *> *models) {
+        NSLog(@"=====所有图库列表=====");
+    }];
 }
 - (void)previewButtonClick {
     TZPhotoPreviewController *photoPreviewVc = [[TZPhotoPreviewController alloc] init];
@@ -525,8 +538,12 @@ static CGSize AssetGridThumbnailSize;
     if (_isSelectOriginalPhoto) [self getSelectedPhotoBytes];
     if ([_numberLabel.text isEqualToString:@"0"]) {
          [self.continueBtn setTitle:@"继续" forState:UIControlStateNormal];
+        [self.continueBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        self.continueBtn.userInteractionEnabled = NO;
     }else {
+        self.continueBtn.userInteractionEnabled = YES;
          [self.continueBtn setTitle:[NSString stringWithFormat:@"继续(%@)", _numberLabel.text] forState:UIControlStateNormal];
+        [self.continueBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }
    
 }
@@ -822,6 +839,7 @@ static CGSize AssetGridThumbnailSize;
 - (UIButton *)continueBtn {
     if (!_continueBtn) {
         _continueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _continueBtn.userInteractionEnabled = YES;
         _continueBtn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 75, 20, 70, 20);
         _continueBtn.titleLabel.textAlignment = NSTextAlignmentRight;
         [_continueBtn setTitle:@"继续" forState:UIControlStateNormal];

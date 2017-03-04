@@ -11,8 +11,6 @@
 #define MaxImageCount 9
 #define deleImageWH 25 // 删除按钮的宽高
 #define padding 10
-#define screenWidth [UIScreen mainScreen].bounds.size.width
-#define screenHeight [UIScreen mainScreen].bounds.size.height
 
 #define imageTag 2000
 

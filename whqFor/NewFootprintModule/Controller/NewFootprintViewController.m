@@ -14,6 +14,7 @@
 #import "OEPopVideoController.h"
 #import <AssetsLibrary/ALAssetsLibrary.h>
 #import "MBProgressHUD+MJ.h"
+#import "ShowImageViewController.h"
 
 
 @interface NewFootprintViewController ()<UITextViewDelegate,UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, TZImagePickerControllerDelegate, OEPopVideoControllerDelegate>
@@ -31,7 +32,6 @@
 @property (nonatomic, strong) UIButton *addPictureButton;
 @property (nonatomic, strong) ImagePickerChooseView *IPCView;
 @property (nonatomic,strong) AGImagePickerController *imagePicker;
-@property (nonatomic, strong) NSMutableArray *imagePickerArray;
 
 @property (nonatomic, strong) UIImagePickerController *imagePickerVc;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -46,6 +46,7 @@
     [self setupNavBar];
     [self.view addSubview:self.tableView];
     [self initHeaderView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reveiveImageArrNoti:) name:@"imageArrNoti" object:nil];
 }
 
 #pragma mark - customAction
@@ -56,6 +57,12 @@
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
 }
 
+- (void)reveiveImageArrNoti:(NSNotification *)noti {
+    self.imagePickerArray = noti.userInfo[@"imageArr"];
+    self.phAssetImageArr = noti.userInfo[@"phAssetImageArr"];
+    [self initHeaderView];
+}
+
 //取消发布新脚印
 - (void)cancelReport {
     NSLog(@"取消发布新脚印");
@@ -64,7 +71,7 @@
 
 //发布新脚印
 - (void)reportBtnOnClick{
-    NSLog(@"发布新脚印");
+    NSLog(@"发布新脚印===所有发布的图片数组为====%@", self.imagePickerArray);
 }
 
 -(void)initHeaderView
@@ -103,7 +110,8 @@
         
         pictureImageView.tag = imageTag + i;
         pictureImageView.userInteractionEnabled = YES;
-        pictureImageView.image = [UIImage imageWithCGImage:((ALAsset *)[self.imagePickerArray objectAtIndex:i]).thumbnail];
+       // pictureImageView.image = [UIImage imageWithCGImage:((ALAsset *)[self.imagePickerArray objectAtIndex:i]).thumbnail];
+        pictureImageView.image = self.imagePickerArray[i];
         [headView addSubview:pictureImageView];
     }
     if (imageCount < MaxImageCount) {
@@ -133,6 +141,18 @@
     [self.reportStateTextView resignFirstResponder];
 }
 
+-(void)tapImageView:(UITapGestureRecognizer *)tap
+{
+    
+    self.navigationController.navigationBarHidden = YES;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    ShowImageViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ShowImage"];
+    vc.clickTag = tap.view.tag;
+    vc.imageViews = self.phAssetImageArr;;
+    [self.navigationController pushViewController:vc animated:YES];
+     
+}
+
 // 删除图片
 -(void)deletePic:(UIButton *)btn
 {
@@ -158,7 +178,8 @@
     
     EditPhotosViewController *editPhotosVC = [[EditPhotosViewController alloc] initWithImage:image];
     editPhotosVC.assets = assets;
-    [self.navigationController pushViewController:editPhotosVC animated:YES];
+   // [self.navigationController pushViewController:editPhotosVC animated:YES];
+    [self presentViewController:editPhotosVC animated:YES completion:nil];
 }
 
 /// 打印图片名字
@@ -187,7 +208,7 @@
 }
 
 -(void)initImagePickerChooseView {
-    ImagePickerChooseView *IPCView = [[ImagePickerChooseView alloc]initWithFrame:CGRectMake(0, screenHeight - 64, screenWidth, IPCViewHeight) andAboveView:self.view];
+    ImagePickerChooseView *IPCView = [[ImagePickerChooseView alloc] initWithFrame:CGRectMake(0, screenHeight - 64, screenWidth, IPCViewHeight) andAboveView:self.view];
     [self.view addSubview:IPCView];
     self.IPCView = IPCView;
     //去拍小视频
@@ -254,13 +275,18 @@
     static NSString *iden = @"reportCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:iden];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     if (indexPath.section == 0) {
         cell.textLabel.text = @"相关小步";
+        cell.detailTextLabel.text = @"最长见识首都博物馆";
+        cell.detailTextLabel.textColor = [UIColor colorWithRed:162.0/255.0 green:162.0/255.0 blue:162.0/255.0 alpha:1.0];
     }else {
         cell.textLabel.text = @"谁可以看见";
+        cell.detailTextLabel.textColor = [UIColor colorWithRed:162.0/255.0 green:162.0/255.0 blue:162.0/255.0 alpha:1.0];
+        cell.detailTextLabel.text = @"所有";
     }
     
     return cell;
@@ -320,6 +346,13 @@
         _imagePickerArray = [[NSMutableArray alloc]init];
     }
     return _imagePickerArray;
+}
+
+- (NSMutableArray *)phAssetImageArr {
+    if (!_phAssetImageArr) {
+        _phAssetImageArr = [NSMutableArray array];
+    }
+    return _phAssetImageArr;
 }
 
 - (void)didReceiveMemoryWarning {

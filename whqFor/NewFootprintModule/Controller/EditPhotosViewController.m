@@ -16,6 +16,7 @@
 #import "CustomSliderView.h"
 #import "ImageUtil.h"
 #import "testColor.h"
+#import "NewFootprintViewController.h"
 
 #define kWidth 50
 #define kHeight 70
@@ -112,6 +113,7 @@
             [collectionView reloadData];
         });
     }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -373,6 +375,17 @@
 //继续按钮的触发事件
 - (void)continueBtnOnClick {
     NSLog(@"设置好后的图片数组为：%@", self.imageArr);
+    NewFootprintViewController *newFooterVC = [[NewFootprintViewController alloc] init];
+    newFooterVC.imagePickerArray = self.imageArr;
+    //[self.navigationController pushViewController:newFooterVC animated:YES];
+    //NSDictionary *dict = [NSDictionary dictionaryWithObject:self.imageArr forKey:@"imageArr"];
+    NSDictionary *dict = @{
+                           @"imageArr" : self.imageArr,
+                           @"phAssetImageArr" : self.assets
+                           };
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"imageArrNoti" object:self userInfo:dict];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 //滤镜库按钮点击

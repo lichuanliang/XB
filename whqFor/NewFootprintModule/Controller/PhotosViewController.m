@@ -22,8 +22,7 @@
     [self.view addSubview:self.topView];
     [self.topView addSubview:self.cancelBtn];
     [self.topView addSubview:self.continueBtn];
-    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
-    [self presentViewController:imagePickerVc animated:YES completion:nil];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
