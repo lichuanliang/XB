@@ -14,6 +14,8 @@
 @property (nonatomic, assign) BOOL isFirstAppear;
 @property (nonatomic, assign) NSInteger columnNumber;
 @property (nonatomic, strong) TZAlbumModel *model;
+/** 顶部中间的相册库按钮*/
+@property (nonatomic, strong) UIButton *photoListBtn;
 
 @property (nonatomic, copy) void (^backButtonClickHandle)(TZAlbumModel *model);
 

@@ -97,6 +97,7 @@ static CGSize AssetGridThumbnailSize;
     [self.view addSubview:self.topView];
     [self.topView addSubview:self.cancelBtn];
     [self.topView addSubview:self.continueBtn];
+    [self.topView addSubview:self.photoListBtn];
 }
 
 - (void)initSubviews {
@@ -273,7 +274,10 @@ static CGSize AssetGridThumbnailSize;
 }
 
 #pragma mark - Click Event
-
+//中间相册列表按钮的触发事件
+- (void)photoListBtnOnClick {
+    NSLog(@"点击弹出相册列表的view");
+}
 - (void)previewButtonClick {
     TZPhotoPreviewController *photoPreviewVc = [[TZPhotoPreviewController alloc] init];
     [self pushPhotoPrevireViewController:photoPreviewVc];
@@ -826,6 +830,18 @@ static CGSize AssetGridThumbnailSize;
     }
     return _continueBtn;
 }
+
+- (UIButton *)photoListBtn {
+    if (!_photoListBtn) {
+        _photoListBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _photoListBtn.frame = CGRectMake(screenWidth/2-50, 15, 100, 30);
+        [_photoListBtn setTitle:@"相机胶卷" forState:UIControlStateNormal];
+        [_photoListBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];;
+        [_photoListBtn addTarget:self action:@selector(photoListBtnOnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _photoListBtn;
+}
+
 
 @end
 
