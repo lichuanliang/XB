@@ -48,6 +48,9 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 /** 最开始的老图--切换效果时要先重置再设置*/
 @property (nonatomic, copy) NSMutableArray *oldImageArr;
+/** 宽高比*/
+@property (nonatomic, assign) CGFloat reshapeScale;
+
 
 @end
 
@@ -238,6 +241,16 @@
         //显示裁剪比例的view
         weakSelf.cutPIDCollectionView.hidden = NO;
         [weakSelf.view addSubview:weakSelf.cutPIDCollectionView];
+        
+        weakSelf.cutPIDCollectionView.chooseCutScaleBlock = ^(NSString *scale){
+            
+            weakSelf.imageArr[weakSelf.assetIndex] = weakSelf.oldImageArr[weakSelf.assetIndex];
+            weakSelf.reshapeScale = [scale floatValue];
+            NSLog(@"将要裁剪的比例为：----%f", weakSelf.reshapeScale);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.collectionView reloadData];
+            });
+        };
     };
     
     //关闭裁剪比例视图
@@ -336,7 +349,7 @@
     };
 }
 
-//设置亮度变化效果
+//设置美化照片变化效果
 - (void)setupBeautyImageViewWithFilter:(GPUImageFilter *)filter withAssetIndex:(NSInteger)assetIndex{
     
     __weak typeof(self) weakSelf = self;
@@ -477,6 +490,12 @@
     return Cell;
 }
 
+#pragma mark - getter
+
+- (CGFloat)scale
+{
+    return self.reshapeScale == 0? 1 : self.reshapeScale;
+}
 
 #pragma mark - lazyLoading
 - (UIView *)topView {

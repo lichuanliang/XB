@@ -60,6 +60,43 @@ static NSString *const customCellID = @"CutPhotoPIDCustomCell";
     CutPhotoPIDCustomCell *cell = [self.cutPIDCollectionView dequeueReusableCellWithReuseIdentifier:customCellID forIndexPath:indexPath];
     NSArray *typeName = @[@"4:3",@"5:4",@"1:1",@"4:5",@"3:4"];
     cell.PIDLabel.text = typeName[indexPath.row];
+    cell.tag = indexPath.row;
+    cell.cutImageBlock = ^(NSInteger tag){
+        switch (tag) {
+            case 0:
+                //选中4：3比例
+                if (self.chooseCutScaleBlock) {
+                    self.chooseCutScaleBlock(typeName[0]);
+                }
+                break;
+            case 1:
+                //选中5：4比例
+                if (self.chooseCutScaleBlock) {
+                    self.chooseCutScaleBlock(typeName[1]);
+                }
+                break;
+            case 2:
+                //选中1：1比例
+                if (self.chooseCutScaleBlock) {
+                    self.chooseCutScaleBlock(typeName[2]);
+                }
+                break;
+            case 3:
+                //选中4：5比例
+                if (self.chooseCutScaleBlock) {
+                    self.chooseCutScaleBlock(typeName[3]);
+                }
+                break;
+            case 4:
+                //选中3：4比例
+                if (self.chooseCutScaleBlock) {
+                    self.chooseCutScaleBlock(typeName[4]);
+                }
+                break;
+            default:
+                break;
+        }
+    };
     
     
     return cell;

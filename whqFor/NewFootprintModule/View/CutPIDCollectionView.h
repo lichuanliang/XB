@@ -20,5 +20,7 @@
 @property (nonatomic, copy) void(^cancelBlock)();
 /** 确定的block*/
 @property (nonatomic, copy) void(^doneBlock)();
+/** 选中裁剪比例后的回调--用于回调选中item下标所对应的裁剪比例*/
+@property (nonatomic, copy) void(^chooseCutScaleBlock)(NSString *);
 
 @end

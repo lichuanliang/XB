@@ -15,7 +15,7 @@
     [super awakeFromNib];
     self.sliderView.continuous = YES;
     self.sliderView.thumbTintColor = [UIColor redColor];
-    self.sliderView.minimumTrackTintColor = [UIColor whiteColor];
+    self.sliderView.minimumTrackTintColor = [UIColor redColor];
     self.sliderView.maximumTrackTintColor = [UIColor whiteColor];
     self.sliderView.minimumValue = -1;
     self.sliderView.maximumValue = 1;
